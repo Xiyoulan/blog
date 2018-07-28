@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Http\Traits\PhoneRegisterable;
 class RegisterController extends Controller
 {
     /*
@@ -21,6 +21,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    use PhoneRegisterable;
 
     /**
      * Where to redirect users after registration.
@@ -48,9 +49,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'captcha' => 'required|captcha',
+        ],[
+            'captcha.required' => '验证码不能为空 o(╯□╰)o',
+            'captcha.captcha' => '验证码错误 o(╯□╰)o'
         ]);
     }
 
