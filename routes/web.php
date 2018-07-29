@@ -16,5 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::post('/register/verificationCode','Auth\RegisterController@sendVerificationCode')->name('sendVerificationCode');
+Route::post('/register/phone','Auth\RegisterController@registerWithPhone')->name('registerWithPhone');
+Route::post('/register/supplement','Auth\RegisterController@supplement')->name('supplement');
+Route::get('/register/append','Auth\RegisterController@append')->name('toAppend');
 Route::get('/home', 'HomeController@index')->name('home');

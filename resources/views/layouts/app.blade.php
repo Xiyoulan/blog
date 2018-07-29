@@ -17,11 +17,14 @@
     <body>
         <div id="app" class="{{ route_class() }}-page">
             @include('layouts._header')
-            @yield('content')
+            <div class="container">
+                @include('commons._message')
+                @yield('content')
+            </div>
+            @include('layouts._footer') 
         </div>
-        @include('layouts._footer') 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-        @yield('script')
+        @yield('scripts')
     </body>
 </html>
