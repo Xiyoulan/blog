@@ -87,7 +87,7 @@ use RegistersUsers;
             session()->forget('phone_verification');
             return back()->with('danger', '手机号码和验证码不匹配!');
         }
-        return redirect()->route('toAppend');
+        return redirect()->route('append');
     }
 
     public function supplement(PhoneRegisterRequest $request)
