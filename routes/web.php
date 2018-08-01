@@ -15,5 +15,10 @@ Route::post('/register/verificationCode','Auth\RegisterController@sendVerificati
 Route::post('/register/phone','Auth\RegisterController@registerWithPhone')->name('registerWithPhone');
 Route::post('/register/supplement','Auth\RegisterController@supplement')->name('supplement');
 Route::get('/register/append','Auth\RegisterController@append')->name('append');
+Route::get('/','SimplePageController@index');
+
 Route::resource('articles','ArticleController');
-Route::get('/','BlogController@index');
+
+Route::resource('users','UserController',['except'=>'edit']);
+Route::get('users/{user}/active/{token?}','UserController@active')->name('active');
+Route::post('user/{user}/active','UserController@resendConfirmEmail')->name('resendEmail');

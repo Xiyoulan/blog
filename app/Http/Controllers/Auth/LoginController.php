@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -52,6 +53,10 @@ class LoginController extends Controller
         $username = $request->username;
         filter_var($username, FILTER_VALIDATE_EMAIL) ? $this->loginType = 'email' : $this->loginType = 'phone';
         $this->validateLogin($request);
+        //判断邮箱是否激活
+        if($this->loginType=='email'&&!$this->emailIsActivated($request->username)){
+            return redirect()->route('login')->with('warning','邮箱未激活,请激活后登录!');
+        }
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
@@ -65,6 +70,10 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+    
+    protected  function emailIsActivated($email){
+        return User::where('email',$email)->first()->is_activated;
     }
 
     protected function validateLogin(Request $request)

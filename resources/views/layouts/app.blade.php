@@ -8,10 +8,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Styles -->
-<!--        <link rel="stylesheet" href="{{ asset('css/style.css') }}" id="theme-styles">-->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Font-Awesome -->
-        <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
         <!--[if lt IE 9]>      
             <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
         <![endif]-->
@@ -20,6 +18,13 @@
     <body>
         <div id="app" class="{{ route_class() }}-page">
             @include('layouts._header')
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ol>
+            </div>
             <div class="container"> @include('commons._message')</div>
             @yield('content')
             @include('layouts._footer') 

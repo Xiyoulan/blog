@@ -5,7 +5,7 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class SimplePageController extends Controller
 {
 
     public function index()

@@ -10,6 +10,7 @@ use Overtrue\EasySms\EasySms;
 use App\Http\Requests\PhoneRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Events\RegisteredWithEmail;
 
 class RegisterController extends Controller
 {
@@ -72,6 +73,16 @@ use RegistersUsers;
             return abort(404);
         }
         return view('auth.append');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new RegisteredWithEmail($user = $this->create($request->all())));
+
+        //转到激活页面
+        return redirect()->route('active',$user->id);
     }
 
     public function registerWithPhone(Request $request)

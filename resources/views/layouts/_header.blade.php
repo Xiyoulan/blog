@@ -12,7 +12,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Blog') }}
+                    {{ config('app.name', 'Xiyoulan') }}
                 </a>
             </div>
 
@@ -38,13 +38,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="">
+                                <a href="{{ route('users.show',Auth::id()) }}">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     个人中心
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{ route('users.show',[Auth::id(),'tab'=>'edit']) }}">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     编辑资料
                                 </a>
