@@ -8754,6 +8754,13 @@ Blog main page paging
   padding-bottom: 13px;
 }
 
+.comment-box .media-body .comment-meta .btn {
+  border: 0px solid #c1c1c1;
+  padding-right: 2px;
+  padding-left: 2px;
+  color: #f4645f;
+}
+
 .comment-box .media-body .comment-meta i {
   padding-right: 5px;
 }
@@ -9063,7 +9070,8 @@ Blog main page paging
 }
 
 .simditor-body,
-.article-body {
+.article-body,
+parent-comment-body {
   font-size: 15px;
   line-height: 1.3;
   overflow: hidden;
@@ -9072,52 +9080,62 @@ Blog main page paging
 }
 
 .simditor-body a,
-.article-body a {
+.article-body a,
+parent-comment-body a {
   background: transparent;
 }
 
 .simditor-body a:active,
 .simditor-body a:hover,
 .article-body a:active,
-.article-body a:hover {
+.article-body a:hover,
+parent-comment-body a:active,
+parent-comment-body a:hover {
   outline: 0;
 }
 
 .simditor-body ol li,
-.article-body ol li {
+.article-body ol li,
+parent-comment-body ol li {
   margin: 8px 0;
 }
 
 .simditor-body pre[class*=language-],
-.article-body pre[class*=language-] {
+.article-body pre[class*=language-],
+parent-comment-body pre[class*=language-] {
   margin: 1.2em 0 !important;
 }
 
 .simditor-body strong,
-.article-body strong {
+.article-body strong,
+parent-comment-body strong {
   font-weight: bold;
 }
 
 .simditor-body h1,
-.article-body h1 {
+.article-body h1,
+parent-comment-body h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
 .simditor-body img,
-.article-body img {
+.article-body img,
+parent-comment-body img {
   border: 0;
 }
 
 .simditor-body hr,
-.article-body hr {
+.article-body hr,
+parent-comment-body hr {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   height: 0;
 }
 
 .simditor-body table,
-.article-body table {
+.article-body table,
+parent-comment-body table {
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -9125,18 +9143,22 @@ Blog main page paging
 .simditor-body td,
 .simditor-body th,
 .article-body td,
-.article-body th {
+.article-body th,
+parent-comment-body td,
+parent-comment-body th {
   padding: 0;
 }
 
 .simditor-body *,
-.article-body * {
+.article-body *,
+parent-comment-body * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 .simditor-body a,
-.article-body a {
+.article-body a,
+parent-comment-body a {
   text-decoration: none;
 }
 
@@ -9145,12 +9167,16 @@ Blog main page paging
 .simditor-body a:active,
 .article-body a:hover,
 .article-body a:focus,
-.article-body a:active {
+.article-body a:active,
+parent-comment-body a:hover,
+parent-comment-body a:focus,
+parent-comment-body a:active {
   text-decoration: none;
 }
 
 .simditor-body hr,
-.article-body hr {
+.article-body hr,
+parent-comment-body hr {
   height: 0;
   margin: 15px 0;
   overflow: hidden;
@@ -9162,67 +9188,81 @@ Blog main page paging
 .simditor-body hr:before,
 .simditor-body hr:after,
 .article-body hr:before,
-.article-body hr:after {
+.article-body hr:after,
+parent-comment-body hr:before,
+parent-comment-body hr:after {
   display: table;
   content: " ";
 }
 
 .simditor-body hr:after,
-.article-body hr:after {
+.article-body hr:after,
+parent-comment-body hr:after {
   clear: both;
 }
 
 .simditor-body blockquote,
-.article-body blockquote {
+.article-body blockquote,
+parent-comment-body blockquote {
   margin: 0;
 }
 
 .simditor-body ul,
 .simditor-body ol,
 .article-body ul,
-.article-body ol {
+.article-body ol,
+parent-comment-body ul,
+parent-comment-body ol {
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .simditor-body ol ol,
-.article-body ol ol {
+.article-body ol ol,
+parent-comment-body ol ol {
   list-style-type: lower-roman;
 }
 
 .simditor-body dd,
-.article-body dd {
+.article-body dd,
+parent-comment-body dd {
   margin-left: 0;
 }
 
 .simditor-body code,
 .simditor-body pre,
 .article-body code,
-.article-body pre {
+.article-body pre,
+parent-comment-body code,
+parent-comment-body pre {
   font-family: monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 1em;
 }
 
 .simditor-body pre,
-.article-body pre {
+.article-body pre,
+parent-comment-body pre {
   margin-top: 0;
   margin-bottom: 0;
   overflow: auto;
 }
 
 .simditor-body .topic-body > *:first-child,
-.article-body .topic-body > *:first-child {
+.article-body .topic-body > *:first-child,
+parent-comment-body .topic-body > *:first-child {
   margin-top: 0 !important;
 }
 
 .simditor-body .topic-body > *:last-child,
-.article-body .topic-body > *:last-child {
+.article-body .topic-body > *:last-child,
+parent-comment-body .topic-body > *:last-child {
   margin-bottom: 0 !important;
 }
 
 .simditor-body .anchor,
-.article-body .anchor {
+.article-body .anchor,
+parent-comment-body .anchor {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9234,7 +9274,8 @@ Blog main page paging
 }
 
 .simditor-body .anchor:focus,
-.article-body .anchor:focus {
+.article-body .anchor:focus,
+parent-comment-body .anchor:focus {
   outline: none;
 }
 
@@ -9249,7 +9290,13 @@ Blog main page paging
 .article-body h3,
 .article-body h4,
 .article-body h5,
-.article-body h6 {
+.article-body h6,
+parent-comment-body h1,
+parent-comment-body h2,
+parent-comment-body h3,
+parent-comment-body h4,
+parent-comment-body h5,
+parent-comment-body h6 {
   position: relative;
   margin-top: 1.0em;
   margin-bottom: 16px;
@@ -9257,7 +9304,8 @@ Blog main page paging
 }
 
 .simditor-body h1,
-.article-body h1 {
+.article-body h1,
+parent-comment-body h1 {
   padding-bottom: 0.3em;
   font-size: 2.25em;
   line-height: 1.2;
@@ -9265,7 +9313,8 @@ Blog main page paging
 }
 
 .simditor-body h2,
-.article-body h2 {
+.article-body h2,
+parent-comment-body h2 {
   padding-bottom: 0.3em;
   font-size: 1.3em;
   line-height: 1.225;
@@ -9273,23 +9322,27 @@ Blog main page paging
 }
 
 .simditor-body h3,
-.article-body h3 {
+.article-body h3,
+parent-comment-body h3 {
   font-size: 1.2em;
   line-height: 1.43;
 }
 
 .simditor-body h4,
-.article-body h4 {
+.article-body h4,
+parent-comment-body h4 {
   font-size: 1.1em;
 }
 
 .simditor-body h5,
-.article-body h5 {
+.article-body h5,
+parent-comment-body h5 {
   font-size: 1.0em;
 }
 
 .simditor-body h6,
-.article-body h6 {
+.article-body h6,
+parent-comment-body h6 {
   font-size: 0.9em;
   color: #777;
 }
@@ -9307,14 +9360,22 @@ Blog main page paging
 .article-body ol,
 .article-body dl,
 .article-body table,
-.article-body pre {
+.article-body pre,
+parent-comment-body p,
+parent-comment-body blockquote,
+parent-comment-body ul,
+parent-comment-body ol,
+parent-comment-body dl,
+parent-comment-body table,
+parent-comment-body pre {
   margin-top: 0;
   margin-bottom: 0px;
   line-height: 30px;
 }
 
 .simditor-body hr,
-.article-body hr {
+.article-body hr,
+parent-comment-body hr {
   border: 2px dashed #F0F4F6;
   border-bottom: 0px;
   margin: 18px auto;
@@ -9324,7 +9385,9 @@ Blog main page paging
 .simditor-body ul,
 .simditor-body ol,
 .article-body ul,
-.article-body ol {
+.article-body ol,
+parent-comment-body ul,
+parent-comment-body ol {
   padding-left: 2em;
   padding: 10px 20px 10px 30px;
   color: #7d8688;
@@ -9333,23 +9396,28 @@ Blog main page paging
 .simditor-body ol ol,
 .simditor-body ol ul,
 .article-body ol ol,
-.article-body ol ul {
+.article-body ol ul,
+parent-comment-body ol ol,
+parent-comment-body ol ul {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .simditor-body li > p,
-.article-body li > p {
+.article-body li > p,
+parent-comment-body li > p {
   margin-top: 6px;
 }
 
 .simditor-body dl,
-.article-body dl {
+.article-body dl,
+parent-comment-body dl {
   padding: 0;
 }
 
 .simditor-body dl dt,
-.article-body dl dt {
+.article-body dl dt,
+parent-comment-body dl dt {
   padding: 0;
   margin-top: 6px;
   font-size: 1em;
@@ -9358,13 +9426,15 @@ Blog main page paging
 }
 
 .simditor-body dl dd,
-.article-body dl dd {
+.article-body dl dd,
+parent-comment-body dl dd {
   padding: 0 16px;
   margin-bottom: 16px;
 }
 
 .simditor-body blockquote,
-.article-body blockquote {
+.article-body blockquote,
+parent-comment-body blockquote {
   font-size: inherit;
   padding: 0 15px;
   color: #777;
@@ -9372,17 +9442,20 @@ Blog main page paging
 }
 
 .simditor-body blockquote > :first-child,
-.article-body blockquote > :first-child {
+.article-body blockquote > :first-child,
+parent-comment-body blockquote > :first-child {
   margin-top: 20px;
 }
 
 .simditor-body blockquote > :last-child,
-.article-body blockquote > :last-child {
+.article-body blockquote > :last-child,
+parent-comment-body blockquote > :last-child {
   margin-bottom: 20px;
 }
 
 .simditor-body blockquote,
-.article-body blockquote {
+.article-body blockquote,
+parent-comment-body blockquote {
   margin: 20px 0 !important;
   background-color: #f5f8fc;
   padding: 1rem;
@@ -9391,7 +9464,8 @@ Blog main page paging
 }
 
 .simditor-body table,
-.article-body table {
+.article-body table,
+parent-comment-body table {
   display: block;
   width: 100%;
   overflow: auto;
@@ -9399,38 +9473,45 @@ Blog main page paging
 }
 
 .simditor-body table th,
-.article-body table th {
+.article-body table th,
+parent-comment-body table th {
   font-weight: bold;
 }
 
 .simditor-body table th,
 .simditor-body table td,
 .article-body table th,
-.article-body table td {
+.article-body table td,
+parent-comment-body table th,
+parent-comment-body table td {
   padding: 6px 13px;
   border: 1px solid #ddd;
 }
 
 .simditor-body table tr,
-.article-body table tr {
+.article-body table tr,
+parent-comment-body table tr {
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
 
 .simditor-body table tr:nth-child(2n),
-.article-body table tr:nth-child(2n) {
+.article-body table tr:nth-child(2n),
+parent-comment-body table tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
 
 .simditor-body img,
-.article-body img {
+.article-body img,
+parent-comment-body img {
   max-width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 .simditor-body img,
-.article-body img {
+.article-body img,
+parent-comment-body img {
   border: 1px solid #ddd;
   box-shadow: 0 0 30px #ccc;
   -moz-box-shadow: 0 0 30px #ccc;
@@ -9440,7 +9521,8 @@ Blog main page paging
 }
 
 .simditor-body code,
-.article-body code {
+.article-body code,
+parent-comment-body code {
   background: rgba(90, 87, 87, 0);
   margin: 5px;
   color: #858080;
@@ -9456,13 +9538,16 @@ Blog main page paging
 .simditor-body code:before,
 .simditor-body code:after,
 .article-body code:before,
-.article-body code:after {
+.article-body code:after,
+parent-comment-body code:before,
+parent-comment-body code:after {
   letter-spacing: -0.2em;
   content: "\A0";
 }
 
 .simditor-body pre > code,
-.article-body pre > code {
+.article-body pre > code,
+parent-comment-body pre > code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -9472,14 +9557,17 @@ Blog main page paging
 }
 
 .simditor-body .highlight,
-.article-body .highlight {
+.article-body .highlight,
+parent-comment-body .highlight {
   margin-bottom: 16px;
 }
 
 .simditor-body .highlight pre,
 .simditor-body pre,
 .article-body .highlight pre,
-.article-body pre {
+.article-body pre,
+parent-comment-body .highlight pre,
+parent-comment-body pre {
   padding: 14px;
   overflow: auto;
   line-height: 1.45;
@@ -9489,17 +9577,20 @@ Blog main page paging
 }
 
 .simditor-body .highlight pre,
-.article-body .highlight pre {
+.article-body .highlight pre,
+parent-comment-body .highlight pre {
   margin-bottom: 0;
 }
 
 .simditor-body pre,
-.article-body pre {
+.article-body pre,
+parent-comment-body pre {
   word-wrap: normal;
 }
 
 .simditor-body pre code,
-.article-body pre code {
+.article-body pre code,
+parent-comment-body pre code {
   display: block;
   padding: 0;
   margin: 0;
@@ -9513,7 +9604,9 @@ Blog main page paging
 .simditor-body pre code:before,
 .simditor-body pre code:after,
 .article-body pre code:before,
-.article-body pre code:after {
+.article-body pre code:after,
+parent-comment-body pre code:before,
+parent-comment-body pre code:after {
   content: normal;
 }
 

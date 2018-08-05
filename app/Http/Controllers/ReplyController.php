@@ -37,6 +37,11 @@ class ReplyController extends Controller
          return redirect(url()->previous().'#reply'.$reply->id)->with('success','发布成功');
     }
 
+    public function destroy(Reply $reply){
+        $this->authorize('destroy',$reply);
+        $reply->delete();
+        return back()->with('info','成功删除回复!');
+    }
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
         // 初始化返回数据，默认是失败的

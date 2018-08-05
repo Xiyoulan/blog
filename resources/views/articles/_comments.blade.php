@@ -10,7 +10,21 @@
         <div class="comment-body parent-comment-body">
             {!! $reply->content !!}
         </div>
-        <div class="comment-meta"><time datetime="" class="pull-left"><i class='glyphicon glyphicon-time'></i>{{ $reply->created_at }}</time>&nbsp;|&nbsp;删除<button class="btn btn-default btn-xs pull-right reply-btn" data-parant-id="{{ $reply->id }}">回复</button></div>
+        <div class="comment-meta"><time datetime="" class="pull-left"><i class='glyphicon glyphicon-time'></i>{{ $reply->created_at }}</time>
+            @can('destroy',$reply)
+            <form id="delete-form-{{$reply->id}}" action="{{ route('replies.destroy',$reply->id) }}" method="post">
+                {{ csrf_field()}}
+                {{ method_field('delete') }}
+            </form>
+            &nbsp;|&nbsp;<button class="btn btn-default btn-xs"  onclick="return confirm('确认删除回复?')" onclick="event.stopPropagation();
+                        if (confirm('确认删除回复?')){
+                $('#delete-form-{{ $reply->id }}').submit();
+                    }">删除</button>
+
+            @endcan
+            @auth   
+            |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}">回复</button></div>
+        @endauth
         @if(count($reply->childReplies))
         <button type="button" class="btn btn-default btn-xs more-reply hidden" onclick="hiddenReplies($(this))">收起评论&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></button>
         <div class="child-reply-box">
@@ -31,7 +45,20 @@
                         {{ $childReply->content }}
                     </div>
                     <div class="comment-meta"><time datetime=""class="pull-left"><i class='glyphicon glyphicon-time hidden-xs'></i>{{$childReply->created_at}}</time>
-                        &nbsp;|&nbsp;删除<button class="btn btn-default btn-xs pull-right reply-btn" data-parant-id="{{ $reply->id }}" data-reply-to-id="{{ $childReply->replyFrom->id }} ">回复</button></div>
+                        @can('destroy',$childReply)
+                        <form id="delete-form-{{ $childReply->id }}" action="{{ route('replies.destroy',$childReply->id) }}" method="post">
+                            {{ csrf_field()}}
+                            {{ method_field('delete') }}
+                        </form>
+                        &nbsp;|&nbsp;<button class="btn btn-default btn-xs"  onclick=" event.stopPropagation();
+                                    if (confirm('确认删除回复?')){
+                            $('#delete-form-{{ $childReply->id }}').submit();
+                                }" >删除</button>
+
+                        @endcan
+                        @auth
+                        |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}" data-reply-to-id="{{ $childReply->replyFrom->id }} ">回复</button></div>
+                    @endauth
                 </div>
             </div>
             @endforeach
