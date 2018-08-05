@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             //标题
             $table->string('title')->index();
             //内容
-            $table->text('content');
+            $table->text('content')->nullable();
             //使用 Markdown 编辑内容但同时保存 HTML 版本
             $table->text('content_html');
             //作者id
@@ -27,7 +27,7 @@ class CreateArticlesTable extends Migration
             //分类
             $table->integer('category_id')->unsigned()->index();
             //标签图片
-            $table->string('page_image');
+            $table->string('page_image')->nullable();
             $table->string('slug')->nullable();
             //是否草稿
             $table->boolean('is_draft')->default(0);
@@ -40,8 +40,6 @@ class CreateArticlesTable extends Migration
             //排序
             $table->integer('order')->unsigned()->default(0);
             $table->timestamps();
-            //发表时间
-            $table->timestamp('published_at')->index()->nullable();
             //删除时间 做软删除
             $table->softDeletes();
         });

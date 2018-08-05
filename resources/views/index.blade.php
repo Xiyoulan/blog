@@ -14,9 +14,11 @@
                     <div class="col-md-6 col-sm-6">
                         <article class=" app-teaser">
                             <header>
+                                 @if($article->page_image)
                                 <img src="{{ $article->page_image }}" class="img-responsive" alt="{{ $article->title }}">
+                                 @endif
                                 <h3><a href="{{ route('articles.show',$article->id) }}">{{ $article->title }}</a></h3>
-                                <span class="meta">Posted on {{ $article->published_at->toDateString() }} by <a href="{{ route('users.show',$article->author->id) }}"><span class="glyphicon glyphicon-user"></span>  {{$article->author->name}}</a></span>
+                                <span class="meta">Posted on {{ $article->created_at->toDateString() }} by <a href="{{ route('users.show',$article->author->id) }}"><span class="glyphicon glyphicon-user"></span>  {{$article->author->name}}</a></span>
                                 <hr>
                             </header>
                             <div class="body">

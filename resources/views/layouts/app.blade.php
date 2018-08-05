@@ -18,13 +18,6 @@
     <body>
         <div id="app" class="{{ route_class() }}-page">
             @include('layouts._header')
-            <div class="container">
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Library</a></li>
-                    <li class="active">Data</li>
-                </ol>
-            </div>
             <div class="container"> @include('commons._message')</div>
             @yield('content')
             @include('layouts._footer') 

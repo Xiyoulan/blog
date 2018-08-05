@@ -29,6 +29,7 @@
                     <li><a href="{{ route('login') }}">登 录</a></li>
                     <li><a href="{{ route('register') }}">注 册</a></li>
                     @else
+                    <li><a href="{{ route('articles.create') }}">创作&nbsp;<span class="glyphicon glyphicon-plus"></span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">

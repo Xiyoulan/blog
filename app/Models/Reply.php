@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Reply extends Model
 {
+    //protected $touches = ['article'];
 
     protected $fillable = ['content',];
 
@@ -17,6 +16,35 @@ class Reply extends Model
     public function replyFrom()
     {
         return $this->belongsTo(User::class, 'from');
+    }
+
+    public function article()
+    {
+        return $this->belongsTo(Article::class);
+    }
+
+    public function setParentNode($reply_id)
+    {
+        $parentReply = Reply::where('parent_id', 0)->find($reply_id);
+        if ($parentReply) {
+            $this->parent_id = $reply_id;
+        }
+        $this->parent_id = 0;
+    }
+
+    public function childReplies()
+    {
+        return $this->hasMany(Reply::class, 'parent_id');
+    }
+
+    public function scopeParentNode($query)
+    {
+        return $query->where('parent_id', 0);
+    }
+
+    public function scopeChildNode($query)
+    {
+       return $query->where('parent_id','<>', 0);
     }
 
 }

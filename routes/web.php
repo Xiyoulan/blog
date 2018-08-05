@@ -18,7 +18,13 @@ Route::get('/register/append','Auth\RegisterController@append')->name('append');
 Route::get('/','SimplePageController@index');
 
 Route::resource('articles','ArticleController');
+Route::post('upload_image', 'ArticleController@uploadImage')->name('articles.uploadImage');
 
 Route::resource('users','UserController',['except'=>'edit']);
 Route::get('users/{user}/active/{token?}','UserController@active')->name('active');
+Route::put('users/{user}/password','UserController@resetPassword')->name('users.resetPassword');
 Route::post('user/{user}/active','UserController@resendConfirmEmail')->name('resendEmail');
+
+Route::resource('replies','ReplyController');
+Route::get('replies/{reply}/child','ReplyController@showChildReplies')->name('replies.children');
+Route::post('replies/upload_image', 'ReplyController@uploadImage')->name('replies.uploadImage');

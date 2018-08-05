@@ -10,14 +10,14 @@
                 <div class="media-body">
                     <h4 class="media-heading">{{ $user->name }}</h4>
                     <p class="dio">
-                        {{$user->introduction?:"这个人很懒,什么都没留下~"}}
+                        <span style="color: #222">简介:</span>{{$user->introduction?:"这个人很懒,什么都没留下~"}}
                     </p>
                 </div>
                 注册于 <span class="activated-time">{{$user->created_at->diffForHumans()}}</span>
                 活跃于 <span class="activated-time">1周前</span>
                 @auth
                 @if(Auth::id()!=$user->id)
-                <button class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-plus"></span> 关注 ta</button>
+                <button class="btn btn-info btn-sm btn-block"><span class="glyphicon glyphicon-plus"></span> 关注 ta</button>
                 @endif
                 @endauth
             </div>
@@ -28,7 +28,7 @@
                 <a href="{{ route('articles.create') }}" class="list-group-item "><span class="glyphicon glyphicon-plus pull-right"></span><span class="glyphicon glyphicon-pencil"></span>创作新话题</a>
                 <a href="#" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-folder-open"></span>我收藏的话题</a>
                 @endif
-                <a href="{{ route('users.show',[$user->id,'tab'=>'article']) }}" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-list-alt"></span>{{Auth::id()==$user->id?"我发布的话题":"Ta 发布的话题"}}</a>
+                <a href="{{ route('users.show',[$user->id,'tab'=>'articles']) }}" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-list-alt"></span>{{Auth::id()==$user->id?"我发布的话题":"Ta 发布的话题"}}</a>
                 <a href="{{ route('users.show',[$user->id,'tab'=>'comment']) }}" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-comment"></span>{{Auth::id()==$user->id?"我的评论/回复":"Ta 的评论/回复"}}</a>
                 @if(Auth::id()==$user->id)
                 <a href="#" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-envelope"></span>通知我的消息</a>

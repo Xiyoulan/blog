@@ -3,7 +3,7 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic");
 
 // Variables
-@import "variables";
+//@import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
@@ -16,7 +16,7 @@ body {
     background-color: #fff;
     box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
     border-top: 4px solid #d8d8d8;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     margin-top: 0px;
     .dropdown-menu {
         padding: 0px;
@@ -40,9 +40,6 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-}
-.breadcrumb{
-    margin-bottom: 10px;
 }
 .footer {
     position: absolute;
@@ -221,7 +218,7 @@ The app main page boxes
     header {
         text-align: center;
         img {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             width: 100%;
             opacity: 0.8;
         }
@@ -229,6 +226,7 @@ The app main page boxes
             color: #454a4e;
             margin-top: 0;
             font-size: 20px;
+            margin-top:10px;
             margin-bottom: 10px;
             a,a:focus,a:hover {
                 color: #454a4e;
@@ -294,6 +292,7 @@ Blog main page paging
         h1 {
             font-family: 'PT Serif', serif;
             margin-bottom: 22px;
+            color:#5b6268;
         }
         .lead-image {
 
@@ -303,6 +302,7 @@ Blog main page paging
     .body {
         font-size:16px;
         .meta {
+            padding-top: 10px;
             padding-left: 10px;
             padding-bottom: 10px;
             bottom: 15px;
@@ -313,7 +313,6 @@ Blog main page paging
             }
             i{
                 margin-right:5px;
-                margin-left:5px;
             }
             .data{
 
@@ -323,42 +322,13 @@ Blog main page paging
 } 
 @media (max-width: 979px) {
     .app-post header {
-        .lead-image .meta {
-            position: relative;
-            bottom: 0;
-        }
+
+    }
+    .body .meta {
+        padding-left: 6px;
+        font-size:13px;
     }
 }
-
-.app-post header .lead-image .meta .author,
-.app-post header .lead-image .meta .date,
-.app-post header .lead-image .meta .comments {
-    float: left;
-    margin: 10px 55px 0 0;
-}
-
-.app-post header .lead-image .meta .author .data,
-.app-post header .lead-image .meta .date .data,
-.app-post header .lead-image .meta .comments .data {
-    line-height: 30px;
-}
-
-@media (min-width: 980px) and (max-width: 1199px) {
-    .app-post header .lead-image .meta .author,
-    .app-post header .lead-image .meta .date,
-    .app-post header .lead-image .meta .comments {
-        margin-right: 20px;
-    }
-}
-
-.app-post header .lead-image .meta .author i,
-.app-post header .lead-image .meta .date i,
-.app-post header .lead-image .meta .comments i {
-    font-size: 30px;
-    float: left;
-    margin-right: 10px;
-}
-
 .app-post .body {
     margin-top: 20px;
 }
@@ -377,32 +347,46 @@ Blog main page paging
 .comment-box{
     padding-top:30px;
     padding-bottom:50px;
+    a{
+        color:#5bc0de;
+    }
     .media-body{
-        border:1px solid #000;
+        border-bottom:1px solid #c1c1c1;
         padding:10px 10px 5px 10px;
-        border-radius: 5px;
+        border-radius: 2px;
         .comment-body{
+            font-size: 15px;
+            padding-top: 3px;
+            padding-left: 5px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #e7e7e7;
+            //border-bottom: 1px solid #e7e7e7;
+            min-height: 80px;
         }
         .comment-meta{
-            padding-top:12px;
+            font-size:13px;
+            color:#999;
+            padding-top:10px;
             padding-bottom:13px;
+            //border-bottom:1px solid #c1c1c1;
             i{
                 padding-right:5px;
             }
         }
         .more-reply{
-            margin-top:10px; 
+            margin-top:10px;
+            background: #fbfbfd;
+            border:1px solid #fbfbfd;
+            color:#f4645f;
+            text-align: left;
         }
         nav{
-            margin-left:87px;
+            text-align: center
         }
     }
     .media-heading {
-        font-size:16px;
+        font-size:15px;
         a {
-            color: #000;
+            color:#f4645f;;
             padding-right:5px;
             padding-left:5px;
         }
@@ -415,6 +399,36 @@ Blog main page paging
             max-width: 72px;
             color: #000;
         }
+    }
+    .child-reply{
+        background-color: #fbfbfd;
+        .media-body{
+            padding:5px 5px 3px 5px;
+            border-bottom:0px solid #c1c1c1;
+            .comment-body{
+                border-bottom: 0px solid #e7e7e7;
+                padding-top: 5px;
+                font-size: 14px;
+                min-height: 14px;
+            }
+            .comment-meta{
+                border-bottom:0px solid #c1c1c1;
+                padding-top:1px;
+                padding-bottom:5px;
+            }
+        }
+        margin-top:5px;
+        .media-left{
+            padding-right:5px;
+            a,img{
+                max-width: 36px;
+                color: #000;
+            }
+        }
+        .media-heading{
+            font-size: 14px;
+        }
+
     }
 }
 @media (max-width: 767px) and (min-width: 385px){
@@ -455,7 +469,7 @@ Blog main page paging
         }
         .media-body {
             .comment-meta{
-                font-size: 12px;
+                font-size: 3px;
             }
             nav {
                 margin-left:25px;
@@ -476,57 +490,183 @@ Blog main page paging
     padding-bottom:40px;
 }
 /* users show page */
-.user-aside{
-    .panel{
-        border-color: #d3e0e9;
-    }
-    .panel-heading{
-        background-color: f1f1f1;
-        .media-left{
-            a,img{
-                max-width: 72px;
+.users-show-page{
+    .user-aside{
+        .panel{
+            border-color: #d3e0e9;
+        }
+        .panel-heading{
+            background-color: f1f1f1;
+            .media-left{
+                a,img{
+                    max-width: 72px;
+                }
+                a:hover{
+                    border:2xp solid #ccc;  
+                }
             }
-            a:hover{
-                border:2xp solid #ccc;  
+            .dio{
+                color:#c1c1c1;
+                padding-bottom: 20px;
+            }
+            .activated-time{
+                color:#ccc;
+                padding-right:20px;
+            }
+            button{
+                margin-top: 5px;
+                color: #fff;
+                span{
+                    margin-right: 5xp;
+                }
             }
         }
-        .dio{
-            color:#c1c1c1;
-            padding-bottom: 20px;
-        }
-        .activated-time{
-            color:#ccc;
-            padding-right:20px;
-        }
-        button{
-            margin-top: 5px;
-            background-color: #f93e38;
-            color: #fff;
-            span{
-                margin-right: 5xp;
+        .panel-body{
+            .list-group .glyphicon{
+                padding-right: 5px;
             }
         }
-    }
-    .panel-body{
-        .list-group .glyphicon{
-            padding-right: 5px;
-        }
-    }
 
-}
-.users-show-page .app-main{
-    .user-nav{
-        font-size:14px;
     }
-    .tab-pane .panel{
-        margin-top:5px;
-    }
-}
-@media(max-width:444){
-    .users-show-page .app-main{
+} 
+.users-show-page {
+    .app-main{
         .user-nav{
-            font-size:10px;
+            font-size:14px;
         }
-        
+        .tab-pane .panel{
+            margin-top:5px;
+        }
+        #article .article-list{
+            .media{
+                padding-bottom: 8px;
+                border-bottom:1px solid #ced5db;
+                .media-left {
+                    a,img{
+                        max-width:256px;
+                    }
+                }
+                .media-heading{
+                    font-size: 14px;
+                }
+                .media-body{
+                    font-size: 13px;
+                }
+                .media-meta{
+                    color:#c1c1c1;
+                    span{
+
+                        margin-left: 20px;
+                        margin-right:5px;
+                    }
+                    a:first-of-type{
+                        margin-left:20px;
+                    }
+                }
+            }
+
+        }
+        #comment{
+            .list-group{
+                margin-top: 5px;
+                .list-group-item{
+                    padding-left: 20px;
+                    padding-top:20px;
+                }
+            }
+            .empty-block{
+                margin-top: 20px;
+                padding-left: 20px;
+            }
+        }
+        #article{
+            .empty-block{
+                margin-top: 20px;
+                padding-left: 20px;
+            }
+            .media-heading{
+                font-size: 16px;
+            }
+        }
+    } 
+}
+@media(max-width:993px){
+    .users-show-page{
+        .app-main{
+            #article .article-list{
+                .media{
+                    .media-left {
+                        a,img{
+                            max-width:128px;
+                        }
+                    }
+                    .media-heading{
+                        font-size: 13px;
+                    }
+                    .media-body{
+                        font-size: 12px;
+                    }
+                    .media-meta{
+                        span{
+                            margin-left: 10px;
+                            margin-right:5px;
+                        }
+                        a:first-of-type{
+                            margin-left:10px;
+                        }
+                        font-size: 13px;
+                    }
+                }
+            } 
+        }
     }
 }
+@media(max-width:444px){
+    .users-show-page{
+        .app-main{
+            .user-nav{
+                font-size:10px;
+            } 
+            #article .article-list{
+                .media{
+                    .media-left {
+                        a,img{
+                            max-width:96px;
+                        }
+                    }
+                    .media-heading{
+                        font-size: 12px;
+                    }
+                    .media-body{
+                        font-size: 8px;
+                    }
+                    .media-meta{
+                        span{
+
+                            margin-left: 5px;
+                            margin-right:3px;
+                        }
+                        a:first-of-type{
+                            margin-left:1px;
+                        }
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+/*articles-edit-page articles-create-page*/
+.articles-edit-page,.article-create-page{
+    #page-image{
+        padding-bottom: 5px;
+    }
+    #article-page-image{
+        margin-top:5xp;
+        max-width:300px;
+    }
+}
+
+@import "article_body";
