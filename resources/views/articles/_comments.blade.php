@@ -22,9 +22,10 @@
                     }">删除</button>
 
             @endcan
-            @auth   
-            |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}">回复</button></div>
-        @endauth
+            @auth
+            |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}">回复</button>
+            @endauth
+        </div>
         @if(count($reply->childReplies))
         <button type="button" class="btn btn-default btn-xs more-reply hidden" onclick="hiddenReplies($(this))">收起评论&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></button>
         <div class="child-reply-box">
@@ -57,8 +58,9 @@
 
                         @endcan
                         @auth
-                        |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}" data-reply-to-id="{{ $childReply->replyFrom->id }} ">回复</button></div>
-                    @endauth
+                        |&nbsp;<button class="btn btn-default btn-xs reply-btn" data-parant-id="{{ $reply->id }}" data-reply-to-id="{{ $childReply->replyFrom->id }} ">回复</button>
+                        @endauth
+                    </div>
                 </div>
             </div>
             @endforeach

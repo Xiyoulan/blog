@@ -3,7 +3,11 @@
 namespace App\Providers;
 use Carbon\Carbon;
 use App\Models\User;
-use App\Observers\UserObserve;
+use App\Models\Article;
+use App\Models\Reply;
+use App\Observers\UserObserver;
+use App\Observers\ArticleObserver;
+use App\Observers\ReplyObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::setLocale('zh');
         //注册观察者
-        User::observe(UserObserve::class);
+        User::observe(UserObserver::class);
+        Reply::observe(ReplyObserver::class);
+        Article::observe(ArticleObserver::class);
     }
 
     /**

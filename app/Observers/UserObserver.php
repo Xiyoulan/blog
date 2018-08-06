@@ -3,7 +3,7 @@
 namespace App\Observers;
 use App\Models\User;
 
-class UserObserve
+class UserObserver
 {
 
     public function saving(User $user)

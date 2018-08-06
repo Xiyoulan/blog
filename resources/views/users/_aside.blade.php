@@ -28,8 +28,8 @@
                 <a href="{{ route('articles.create') }}" class="list-group-item "><span class="glyphicon glyphicon-plus pull-right"></span><span class="glyphicon glyphicon-pencil"></span>创作新话题</a>
                 <a href="#" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-folder-open"></span>我收藏的话题</a>
                 @endif
-                <a href="{{ route('users.show',[$user->id,'tab'=>'articles']) }}" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-list-alt"></span>{{Auth::id()==$user->id?"我发布的话题":"Ta 发布的话题"}}</a>
-                <a href="{{ route('users.show',[$user->id,'tab'=>'comment']) }}" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-comment"></span>{{Auth::id()==$user->id?"我的评论/回复":"Ta 的评论/回复"}}</a>
+                <a href="{{ route('users.show',[$user->id,'tab'=>'articles']) }}" class="list-group-item "><span class="badge">{{ $user->articles_count }}</span><span class="glyphicon glyphicon-list-alt"></span>{{Auth::id()==$user->id?"我发布的话题":"Ta 发布的话题"}}</a>
+                <a href="{{ route('users.show',[$user->id,'tab'=>'comment']) }}" class="list-group-item "><span class="badge">{{ $user->replies_count }}</span><span class="glyphicon glyphicon-comment"></span>{{Auth::id()==$user->id?"我的评论/回复":"Ta 的评论/回复"}}</a>
                 @if(Auth::id()==$user->id)
                 <a href="#" class="list-group-item "><span class="badge">0</span><span class="glyphicon glyphicon-envelope"></span>通知我的消息</a>
                 @endif

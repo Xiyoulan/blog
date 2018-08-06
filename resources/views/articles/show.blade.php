@@ -33,7 +33,11 @@
                 <div id="comments" class="comment-box">
                     @include('articles._comments')
                 </div>
-                @include('articles._create_comments')   
+                @auth
+                @include('articles._create_comments')
+                @else
+                <center style="font-size: 14px;margin-bottom: 30px; "><a href="{{route('login')}}">登录</a>后才可评论~</center>
+                @endauth
             </div>
             @include('commons._aside')
         </div>
@@ -43,7 +47,7 @@
 @endsection
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor/simditor.css') }}">
-@stop
+@endsection
 @section('scripts')
 <script type="text/javascript"  src="{{ asset('js/vendor/module.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/hotkeys.js') }}"></script>

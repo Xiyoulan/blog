@@ -23,11 +23,12 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        $replies =$article->replies()->with(
-                ['replyFrom','childReplies'=>function($query){
-                       return $query->with('replyFrom','replyTo')->ancient();
-                }])->parentNode()->ancient()->paginate(10);
-        return view('articles.show', compact('article','replies'));
+        $replies = $article->replies()->with(
+                        ['replyFrom', 'childReplies' => function($query) {
+                                return $query->with('replyFrom', 'replyTo')->ancient();
+                            }])->parentNode()->ancient()->paginate(10);
+        $article->increment('view_count', 1);
+        return view('articles.show', compact('article', 'replies'));
     }
 
     public function create(Article $article)
@@ -52,14 +53,14 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        $this->authorize('update',$article);
+        $this->authorize('update', $article);
         $categories = Category::All();
         return view('articles.create_and_edit', compact('categories', 'article'));
     }
 
     public function update(ArticleRequest $request, Article $article, ImageUploadHandler $uploader)
     {
-        $this->authorize('update',$article);
+        $this->authorize('update', $article);
         $article->fill($request->only(['content_html', 'title', 'category_id']));
         $article->user_id = \Auth::id();
         if ($request->page_image) {
@@ -71,10 +72,12 @@ class ArticleController extends Controller
         $article->update();
         return redirect()->route('articles.show', [$article->id])->with('success', '成功创建话题!');
     }
-    public function destroy(Article $article){
-        $this->authorize('destroy',$article);
+
+    public function destroy(Article $article)
+    {
+        $this->authorize('destroy', $article);
         $article->delete();
-        return back()->with('info','成功删除话题!');
+        return back()->with('info', '成功删除话题!');
     }
 
     public function uploadImage(Request $request, ImageUploadHandler $uploader)

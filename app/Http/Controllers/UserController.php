@@ -18,8 +18,9 @@ class UserController extends Controller
         $this->middleware('throttle:10,1440', ['only' => 'resendConfirmEmail']);
     }
 
-    public function show(User $user)
+    public function show($user_id)
     {
+        $user =User::withCount('replies','articles')->findOrFail($user_id);
         return view('users.show', compact('user'));
     }
 
@@ -54,7 +55,7 @@ class UserController extends Controller
             \Auth::guard()->logout();
             return redirect()->route('login')->with('success', '密码修改成功,请重新登录!');
         }
-        return redirect()->route('users.show', [$user->id, 'tab' => 'edit'])->withErrors( '密码错误,重置密码失败!');
+        return redirect()->route('users.show', [$user->id, 'tab' => 'edit'])->withErrors('密码错误,重置密码失败!');
     }
 
     public function active(Request $request, User $user)
