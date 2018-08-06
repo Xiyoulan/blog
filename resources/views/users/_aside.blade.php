@@ -17,7 +17,18 @@
                 活跃于 <span class="activated-time">1周前</span>
                 @auth
                 @if(Auth::id()!=$user->id)
-                <button class="btn btn-info btn-sm btn-block"><span class="glyphicon glyphicon-plus"></span> 关注 ta</button>
+                @if(!Auth::user()->isFollowing($user->id))
+                <form action="{{ route('users.follow',$user->id) }}" method="post">
+                    {{ csrf_field() }}
+                    <button class="btn btn-info btn-sm btn-block"><span class="glyphicon glyphicon-plus"></span> 关注 ta</button>
+                </form>
+                @else
+                <form action="{{ route('users.follow',$user->id) }}" method="post">
+                    {{ csrf_field()  }}
+                    {{ method_field('delete') }}
+                       <button class="btn btn-danger btn-sm btn-block"><span class="glyphicon glyphicon-eye-close"></span> 取消关注</button>
+                </form>
+                @endif
                 @endif
                 @endauth
             </div>
