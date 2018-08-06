@@ -16,7 +16,7 @@
                     <input type="hidden" id="parent_id" name="parent_id" value="">
                     <input type="hidden" id="reply_to_id" name="reply_to_id" value="">
                     <div class="form-group">
-                        <textarea  name="content" class="form-control" id="reply-content" rows="3" placeholder="在此输入回复内容" required></textarea>
+                        <textarea  name="content" class="form-control" id="reply-content" autofocus="autofocus" rows="3" placeholder="在此输入回复内容" required></textarea>
                     </div>
                     <button type="button" id="reply-submit" onclick="submitReply()" class="btn btn-danger">发布</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

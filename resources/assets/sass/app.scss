@@ -359,6 +359,7 @@ Blog main page paging
             padding-top: 3px;
             padding-left: 5px;
             padding-bottom: 10px;
+            max-width:590px;
             //border-bottom: 1px solid #e7e7e7;
             min-height: 80px;
         }
@@ -676,3 +677,12 @@ Blog main page paging
 }
 
 @import "article_body";
+/*notification page*/
+.user-notification-page {
+    .media{
+        a{
+            color:#f4645f;     
+        }
+    }
+
+}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 class Reply extends Model
 {
+
     //protected $touches = ['article'];
 
     protected $fillable = ['content',];
@@ -21,6 +22,12 @@ class Reply extends Model
     public function article()
     {
         return $this->belongsTo(Article::class);
+    }
+
+    //层
+    public function layer()
+    {
+        return $this->belongsTo(Reply::class, 'parent_id');
     }
 
     public function setParentNode($reply_id)
@@ -44,7 +51,7 @@ class Reply extends Model
 
     public function scopeChildNode($query)
     {
-       return $query->where('parent_id','<>', 0);
+        return $query->where('parent_id', '<>', 0);
     }
 
 }

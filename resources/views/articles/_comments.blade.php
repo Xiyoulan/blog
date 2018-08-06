@@ -43,7 +43,7 @@
                         回复 <a href="{{ route('users.show',$childReply->replyTo->id) }}">{{ $childReply->replyTo->name }}</a>
                         @endif
                         :
-                        {{ $childReply->content }}
+                        {!! $childReply->content !!}
                     </div>
                     <div class="comment-meta"><time datetime=""class="pull-left"><i class='glyphicon glyphicon-time hidden-xs'></i>{{$childReply->created_at}}</time>
                         @can('destroy',$childReply)

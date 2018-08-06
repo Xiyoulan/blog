@@ -24,7 +24,7 @@
                         </div>
                         <hr>
                         <div class="article-body">
-                        {!! $article->content_html !!}
+                            {!! $article->content_html !!}
                         </div>
                     </div>
                 </article>
@@ -47,12 +47,15 @@
 @endsection
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor/simditor.css') }}">
+<!--<link rel="stylesheet" type="text/css" href="{{asset('css/jquery.atwho.css')}}" >-->
 @endsection
 @section('scripts')
 <script type="text/javascript"  src="{{ asset('js/vendor/module.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/hotkeys.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/uploader.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/simditor.js') }}"></script>
+<!--<script type="text/javascript"  src="{{ asset('js/jquery.caret.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('js/jquery.atwho.js') }}"></script>-->
 <script type="text/javascript">
 //    $(document).ready(function(){
 //        var editor = new Simditor({
@@ -143,12 +146,22 @@ function submitReply() {
             $('#parent_id').val('');
             $('#reply-modal').modal('hide');
             //console.log(msg);
-           
-           window.location.href= window.location.search+'#reply'+msg.id;
-           window.location.reload();
+
+            window.location.href = window.location.search + '#reply' + msg.id;
+            window.location.reload();
         }
     });
 
 }
+//$('#reply-textarea').atwho({
+//    at: "@",
+//    callbacks: {
+//        remoteFilter: function (query, callback) {
+//            $.getJSON("/usersjson", {key: query}, function (data) {
+//                callback(data)
+//            });
+//        }
+//    }
+//});
 </script>
 @endsection

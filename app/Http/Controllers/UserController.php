@@ -18,9 +18,8 @@ class UserController extends Controller
         $this->middleware('throttle:10,1440', ['only' => 'resendConfirmEmail']);
     }
 
-    public function show($user_id)
+    public function show(User $user)
     {
-        $user =User::withCount('replies','articles')->findOrFail($user_id);
         return view('users.show', compact('user'));
     }
 
