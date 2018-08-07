@@ -84,4 +84,10 @@ class UserController extends Controller
         return back()->with('info', '邮件已发送,请耐心等待!');
     }
 
+    public function atwho()
+    {
+        $followings = \Auth::User()->followings()->pluck('name')->toArray();
+        return response()->json($followings);
+    }
+
 }

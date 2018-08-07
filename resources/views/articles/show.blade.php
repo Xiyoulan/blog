@@ -46,55 +46,60 @@
 @include('articles._create_child_comments')
 @endsection
 @section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/simditor/simditor.css') }}">
-<!--<link rel="stylesheet" type="text/css" href="{{asset('css/jquery.atwho.css')}}" >-->
+<!--<link rel="stylesheet" type="text/css" href="{{ asset('css/simditor/simditor.css') }}">-->
+<link rel="stylesheet" type="text/css" href="{{asset('css/jquery.atwho.css')}}" >
 @endsection
 @section('scripts')
-<script type="text/javascript"  src="{{ asset('js/vendor/module.js') }}"></script>
+<!--<script type="text/javascript"  src="{{ asset('js/vendor/module.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/hotkeys.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('js/vendor/uploader.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/vendor/simditor.js') }}"></script>
-<!--<script type="text/javascript"  src="{{ asset('js/jquery.caret.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/jquery.atwho.js') }}"></script>-->
+<script type="text/javascript"  src="{{ asset('js/vendor/simditor.js') }}"></script>-->
+<script type="text/javascript"  src="{{ asset('js/jquery.caret.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('js/jquery.atwho.js') }}"></script>
 <script type="text/javascript">
-//    $(document).ready(function(){
-//        var editor = new Simditor({
-//            textarea: $('#editor'),
-//        });
-//    });
-$(document).ready(function () {
-    var editor = new Simditor({
-        textarea: $('#editor'),
-        toolbar: [
-            'title',
-            'bold',
-            'italic',
-            'underline',
-            'strikethrough',
-            'fontScale',
-            'color',
-            'ol',
-            'ul',
-            'blockquote',
-            'code',
-            'table',
-            'link',
-            'image',
-            'hr',
-            'indent',
-            'outdent',
-            'alignment'
-        ],
-        upload: {
-            url: '{{ route('replies.uploadImage') }}',
-            params: {_token: '{{ csrf_token() }}'},
-            fileKey: 'upload_file',
-            connectionCount: 3,
-            leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-        },
-        pasteImage: true,
-    });
+$('.atwho').atwho({
+    at: "@",
+    callbacks: {
+        remoteFilter: function (query, callback) {
+            $.getJSON("/atwho", {key: query}, function (data) {
+                callback(data)
+            });
+        }
+    }
 });
+//$(document).ready(function () {
+//    var editor = new Simditor({
+//        textarea: $('#editor'),
+//        toolbar: [
+//            'title',
+//            'bold',
+//            'italic',
+//            'underline',
+//            'strikethrough',
+//            'fontScale',
+//            'color',
+//            'ol',
+//            'ul',
+//            'blockquote',
+//            'code',
+//            'table',
+//            'link',
+//            'image',
+//            'hr',
+//            'indent',
+//            'outdent',
+//            'alignment'
+//        ],
+//        upload: {
+//            url: '{{ route('replies.uploadImage') }}',
+//            params: {_token: '{{ csrf_token() }}'},
+//            fileKey: 'upload_file',
+//            connectionCount: 3,
+//            leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+//        },
+//        pasteImage: true,
+//    });
+//});
 function showMore(obj) {
     event.stopPropagation();
     obj.siblings('.child-reply-box').find('.child-reply').removeClass('hidden');
@@ -153,15 +158,5 @@ function submitReply() {
     });
 
 }
-//$('#reply-textarea').atwho({
-//    at: "@",
-//    callbacks: {
-//        remoteFilter: function (query, callback) {
-//            $.getJSON("/usersjson", {key: query}, function (data) {
-//                callback(data)
-//            });
-//        }
-//    }
-//});
 </script>
 @endsection

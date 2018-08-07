@@ -31,3 +31,5 @@ Route::post('replies/upload_image', 'ReplyController@uploadImage')->name('replie
 Route::post('followers/{user}','FollowerController@follow')->name('users.follow');
 Route::delete('followers/{user}','FollowerController@unfollow')->name('users.unfollow');
 Route::get('user/notifications','NotificationController@index')->name('user.notification');
+
+Route::get('/atwho','UserController@atwho')->name('atwho');

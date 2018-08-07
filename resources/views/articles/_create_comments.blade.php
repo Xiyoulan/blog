@@ -11,7 +11,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="article_id" value="{{ $article->id }}">
                 <div class="form-group">
-                    <textarea  name="content" class="form-control" id="editor" rows="3" placeholder="在此输入评论内容~" required></textarea>
+                    <textarea  name="content" class="form-control atwho" id="editor" rows="3" placeholder="在此输入评论内容~" required></textarea>
                 </div>
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 提交</button>
             </form>
