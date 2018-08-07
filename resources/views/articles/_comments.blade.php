@@ -16,7 +16,7 @@
                 {{ csrf_field()}}
                 {{ method_field('delete') }}
             </form>
-            &nbsp;|&nbsp;<button class="btn btn-default btn-xs"  onclick="return confirm('确认删除回复?')" onclick="event.stopPropagation();
+            &nbsp;|&nbsp;<button class="btn btn-default btn-xs" onclick="event.stopPropagation();
                         if (confirm('确认删除回复?')){
                 $('#delete-form-{{ $reply->id }}').submit();
                     }">删除</button>

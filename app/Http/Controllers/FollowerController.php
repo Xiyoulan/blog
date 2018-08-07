@@ -18,6 +18,8 @@ class FollowerController extends Controller
         $current_user = \Auth::user();
         if ($current_user->canFollow($user->id)) {
             $current_user->follow($user->id);
+            $current_user->increment('following_count');
+            $user->increment('follower_count');
             return back()->with('success', '关注成功!');
         }
         return back()->with('warning', '关注失败!');
@@ -31,6 +33,8 @@ class FollowerController extends Controller
         }
         if ($current_user->isFollowing($user->id)) {
             $current_user->unfollow($user->id);
+            $current_user->decrement('following_count');
+            $user->decrement('follower_count');
             return back()->with('success', '取消关注成功!');
         }
         return back()->with('warning', '取消关注失败!');

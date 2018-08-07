@@ -14,15 +14,22 @@ class ReplyObserver
 
     public function deleted(Reply $reply)
     {
-        $num = 0;
+
         if ($reply->parent_id == 0) {
-            $num = \DB::table('replies')->where('parent_id', $reply->id)->delete();
+            // $num = \DB::table('replies')->where('parent_id', $reply->id)->delete();
+            $reply->childReplies()->delete();
         }
-        if ($reply->article->reply_count > $num + 1) {
-            $reply->article->decrement('reply_count', $num + 1);
+        if ($reply->article->reply_count > 0) {
+            $reply->article->decrement('reply_count');
         } else {
             $reply->article->reply_count = 0;
             $reply->article->save();
+        }
+        if ($reply->replyFrom->reply_count > 0) {
+            $reply->replyFrom->decrement('reply_count');
+        } else {
+            $reply->replyFrom->reply_count = 0;
+            $reply->replyFrom->save();
         }
     }
 
@@ -47,22 +54,26 @@ class ReplyObserver
         $article->last_reply_user_id = $reply->from;
         $article->reply_count += 1;
         $article->save();
+        //回复的人回复数+1
+        $reply->ReplyFrom->increment('reply_count');
+
         $notification = new ArticleReplied($reply);
+        //通知的人
+        $user_arr = [];
         //通知作者
-        $article->author->notify($notification);
+        $user_arr[] = $article->author;
         //如果存在被回复的人
         if ($reply->to) {
-            $reply->replyTo->notify($notification);
+            $user_arr[] = $reply->replyTo;
         }
         //通知层主
         if ($reply->parent_id) {
-            //如果层主和被回复的人相同,则不用重复通知
-            if ($reply->to) {
-                if ($reply->layer->replyFrom->id == $reply->replyTo->id) {
-                    return;
-                }
-            }
-            $reply->layer->replyFrom->notify($notification);
+            $user_arr[] = $reply->layer->replyFrom;
+        }
+        //去重
+        $user_arr = array_unique($user_arr);
+        foreach ($user_arr as $user) {
+            $user->notify($notification);
         }
         //通知被@的人
         $users = session()->get('at_users');
