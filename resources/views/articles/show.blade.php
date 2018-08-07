@@ -18,7 +18,7 @@
                         <h1 class="article-title"><center>{{ $article->title }}</center></h1>
                         <div class="meta">
                             <i class="glyphicon glyphicon-user"></i> <a href="{{ route('users.show',$article->author->id) }}">{{ $article->author->name }}</a>
-                            <i class="glyphicon glyphicon-calendar"></i><a href="#">{{ $article->created_at->toDateString() }}</a>
+                            <i class="glyphicon glyphicon-calendar"></i><a href="#">{{ datetime_for_humans($article->created_at) }}</a>
                             <i class="glyphicon glyphicon-eye-open"></i><span class="data"><a>{{ $article->view_count }}</a></span>
                             <i class="glyphicon glyphicon-comment"></i><span class="data"><a href="#comments">{{ $article->reply_count }}</a></span>
                         </div>
@@ -39,7 +39,10 @@
                 <center style="font-size: 14px;margin-bottom: 30px; "><a href="{{route('login')}}">登录</a>后才可评论~</center>
                 @endauth
             </div>
-            @include('commons._aside')
+            <div class="col-md-4">
+                @include('commons._aside')
+            </div>
+
         </div>
     </div>
 </div>

@@ -16,9 +16,10 @@ class ArticleController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('articles.index');
+        $articles=Article::with('author','category','lastReplyUser')->withOrder($request->order)->paginate(10);
+        return view('articles.index', compact('articles'));
     }
 
     public function show(Article $article)
@@ -26,7 +27,7 @@ class ArticleController extends Controller
         $replies = $article->replies()->with(
                         ['replyFrom', 'childReplies' => function($query) {
                                 return $query->with('replyFrom', 'replyTo')->ancient();
-                            }])->parentNode()->ancient()->paginate(10);
+                            }])->parentNode()->ancient()->paginate(config('application.replies_per_page'));
         $article->increment('view_count', 1);
         return view('articles.show', compact('article', 'replies'));
     }

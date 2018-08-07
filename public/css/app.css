@@ -8351,7 +8351,11 @@ button.close {
 }
 
 body {
-  font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  font-family: Raleway,Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+}
+
+.badge-hint {
+  background-color: #d9534f;
 }
 
 /* header */
@@ -8391,6 +8395,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+body a {
+  color: #f4645f;
 }
 
 .footer {
@@ -8556,10 +8564,14 @@ The tags widget
 }
 
 .tags li a {
-  padding: 3px 15px;
+  background-color: #fbfbfd;
+  color: #f4645f;
+  padding: 2px 10px;
   display: inline-block;
   margin: 5px;
+  font-size: 12px;
   border: 1px solid #dddddd;
+  border-radius: 3px;
 }
 
 .tags li a:focus,
@@ -8891,6 +8903,57 @@ Blog main page paging
 .create-comment input,
 .create-comment textarea {
   margin-bottom: 10px;
+}
+
+/* articles index page*/
+
+.articles-index-page .app-main,
+.categories-show-page .app-main {
+  padding-top: 0px;
+}
+
+.articles-index-page .app-main .panel-heading,
+.categories-show-page .app-main .panel-heading {
+  border-bottom: #fff;
+  background-color: #fff;
+}
+
+.articles-index-page .app-main .media-heading,
+.categories-show-page .app-main .media-heading {
+  padding-bottom: 5px;
+  font-size: 13px;
+}
+
+.articles-index-page .app-main .media-heading .meta,
+.categories-show-page .app-main .media-heading .meta {
+  font-size: 13px;
+}
+
+.articles-index-page .app-main .media-heading .meta a,
+.categories-show-page .app-main .media-heading .meta a {
+  color: #999;
+  font-size: 13px;
+}
+
+.articles-index-page .app-main .media-body,
+.categories-show-page .app-main .media-body {
+  color: #999;
+  font-size: 14px;
+}
+
+.articles-index-page .app-main .media-body .media-heading,
+.categories-show-page .app-main .media-body .media-heading {
+  font-size: 15px;
+}
+
+.articles-index-page .app-main .last-reply-user,
+.categories-show-page .app-main .last-reply-user {
+  color: #999;
+}
+
+.articles-index-page .app-main .last-reply-user a,
+.categories-show-page .app-main .last-reply-user a {
+  color: #999;
 }
 
 /* users show page */

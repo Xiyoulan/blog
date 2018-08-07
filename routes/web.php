@@ -19,6 +19,7 @@ Route::get('/','SimplePageController@index');
 
 Route::resource('articles','ArticleController');
 Route::post('upload_image', 'ArticleController@uploadImage')->name('articles.uploadImage');
+Route::resource('categories','CategoryController');
 
 Route::resource('users','UserController',['except'=>'edit']);
 Route::get('users/{user}/active/{token?}','UserController@active')->name('active');

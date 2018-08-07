@@ -10,7 +10,7 @@
         <div class="comment-body parent-comment-body">
             {!! $reply->content !!}
         </div>
-        <div class="comment-meta"><time datetime="" class="pull-left"><i class='glyphicon glyphicon-time'></i>{{ $reply->created_at }}</time>
+        <div class="comment-meta"><time datetime="" class="pull-left"><i class='glyphicon glyphicon-time'></i>{{ datetime_for_humans($reply->created_at) }}</time>
             @can('destroy',$reply)
             <form id="delete-form-{{$reply->id}}" action="{{ route('replies.destroy',$reply->id) }}" method="post">
                 {{ csrf_field()}}
@@ -45,7 +45,7 @@
                         :
                         {!! $childReply->content !!}
                     </div>
-                    <div class="comment-meta"><time datetime=""class="pull-left"><i class='glyphicon glyphicon-time hidden-xs'></i>{{$childReply->created_at}}</time>
+                    <div class="comment-meta"><time datetime=""class="pull-left"><i class='glyphicon glyphicon-time hidden-xs'></i>{{ datetime_for_humans($childReply->created_at) }}</time>
                         @can('destroy',$childReply)
                         <form id="delete-form-{{ $childReply->id }}" action="{{ route('replies.destroy',$childReply->id) }}" method="post">
                             {{ csrf_field()}}

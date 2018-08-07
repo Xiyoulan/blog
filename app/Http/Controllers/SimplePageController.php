@@ -10,7 +10,7 @@ class SimplePageController extends Controller
 
     public function index()
     {
-        $articles = Article::with('author')->paginate(4);
+        $articles = Article::with('author')->recent()->paginate(4);
         return view('index', compact('articles'));
     }
 

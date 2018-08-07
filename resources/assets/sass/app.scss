@@ -8,7 +8,10 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 body {
-    font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+    font-family: Raleway,Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+}
+.badge-hint{
+    background-color:#d9534f;
 }
 /* header */
 .navbar-static-top {
@@ -40,6 +43,9 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    a{
+        color: #f4645f;
+    }
 }
 .footer {
     position: absolute;
@@ -187,10 +193,14 @@ The tags widget
     li {
         float: left;
         a {
-            padding: 3px 15px;
+            background-color: #fbfbfd;
+            color:#f4645f;
+            padding: 2px 10px;
             display: inline-block;
             margin: 5px;
+            font-size: 12px;
             border: 1px solid rgb(221, 221, 221);
+            border-radius: 3px;
         }
         a:focus,a:hover {
             border-color: #222;
@@ -495,6 +505,42 @@ Blog main page paging
         margin-bottom:10px;
     }
     padding-bottom:40px;
+}
+/* articles index page*/
+.articles-index-page,.categories-show-page{
+    .app-main{
+        padding-top:0px;
+        .panel-heading{
+            border-bottom:#fff;
+            background-color: #fff;
+        }
+        .media-heading {
+            padding-bottom:5px;
+            font-size: 13px;
+            .meta{
+                font-size: 13px;
+                a{
+                    color:#999;
+                    font-size: 13px;   
+                }
+
+
+            }
+        }
+        .media-body{
+            color:#999;
+            font-size: 14px;
+            .media-heading{
+                font-size: 15px;
+            }
+        }
+        .last-reply-user {
+            color:#999;
+            a{
+                color:#999;
+            }
+        }
+    }
 }
 /* users show page */
 .users-show-page{

@@ -54,4 +54,15 @@ class Reply extends Model
         return $query->where('parent_id', '<>', 0);
     }
 
+    //定位
+//    public function location()
+//    {
+////        $page = ceil(100/config('application.replies_per_page'));
+////        if ($this->parent_id) {
+////        return route('articles.show', [$this->article_id,'page'=>$page]) . "#reply" . $this->parent_id;
+////        } else {
+////            return route('articles.show', [$this->article_id,'page'=>$page]) . "#reply" . $this->id;
+////        }
+//    }
+
 }
