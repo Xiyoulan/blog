@@ -32,6 +32,11 @@ class ArticlesTableSeeder extends Seeder
             $article->page_image =  $faker->randomElement($page_images);
         });
         Article::insert($articles->toArray());
+        foreach (User::all() as $user){
+            $article_count =$user->articles()->count();
+            $user->article_count = $article_count;
+            $user->save();
+        }
     }
 
 }

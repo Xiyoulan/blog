@@ -32,7 +32,7 @@
         @endif
         @if(if_route('users.show')&&if_query('tab','comment'))
         <div role="tabpanel" class="tab-pane {{ active_class(if_route('users.show')&&if_query('tab','comment'))}}" id="comment">
-            @include('users._comment',['replies'=>$user->replies()->with('article')->recent()->paginate(20)])
+            @include('users._comment',['replies'=>$user->replies()->with('article','replyLog')->recent()->paginate(20)])
         </div>
         @endif
         @can('update',$user)

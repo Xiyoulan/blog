@@ -34,10 +34,11 @@
 
                 @endforeach
 
+                @if(count($articles)>=4)
                 <div class="paging">
                     <a href="{{route('articles.index')}}" class="older"><i>more...</i></a>
                 </div>
-
+                @endif
             </div>
             <div class="col-md-4">
                 @include('commons._aside')

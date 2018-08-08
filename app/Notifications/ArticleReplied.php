@@ -41,6 +41,7 @@ class ArticleReplied extends Notification implements ShouldQueue
         $data = [
             'reply_id' => $this->reply->id,
             'reply_content' => $this->reply->content,
+            'link' => $this->reply->link(),
             'from_id' => $this->reply->replyFrom->id,
             'from_name' => $this->reply->replyFrom->name,
             'from_avatar' => $this->reply->replyFrom->avatar,

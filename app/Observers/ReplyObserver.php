@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Reply;
+use App\Models\Article;
+use App\Models\ReplyLog;
 use App\Notifications\ArticleReplied;
 use App\Handlers\AtUserHandler;
 use App\Notifications\UserAted;
@@ -18,6 +20,8 @@ class ReplyObserver
         if ($reply->parent_id == 0) {
             // $num = \DB::table('replies')->where('parent_id', $reply->id)->delete();
             $reply->childReplies()->delete();
+            //写入reply_log
+            $this->writeDeletedLog($reply);
         }
         if ($reply->article->reply_count > 0) {
             $reply->article->decrement('reply_count');
@@ -40,6 +44,11 @@ class ReplyObserver
 
         //查找@username 并替换成链接 
         $reply->content = app(AtUserHandler::class)->replaceAtUserNames($content);
+        if ($reply->parent_id == 0) {
+            $reply->layer = $reply->article->max_layer + 1;
+        }else{
+            $reply->layer =$reply->parentReply->layer;
+        }
         //通知被艾特的用户
         //1.获得被@的用户
         $users = app(AtUserHandler::class)->getAtUsers($content);
@@ -51,15 +60,12 @@ class ReplyObserver
     public function created(Reply $reply)
     {
         $article = $reply->article;
-        $article->last_reply_user_id = $reply->from;
-        $article->reply_count += 1;
-        $article->save();
+        $this->changeArticle($reply);
         //回复的人回复数+1
         $reply->ReplyFrom->increment('reply_count');
 
         $notification = new ArticleReplied($reply);
-        //通知的人
-        $user_arr = [];
+        //通知的人保存在$user_arr;
         //通知作者
         $user_arr[] = $article->author;
         //如果存在被回复的人
@@ -68,7 +74,7 @@ class ReplyObserver
         }
         //通知层主
         if ($reply->parent_id) {
-            $user_arr[] = $reply->layer->replyFrom;
+            $user_arr[] = $reply->parentReply->replyFrom;
         }
         //去重
         $user_arr = array_unique($user_arr);
@@ -82,6 +88,39 @@ class ReplyObserver
                 $user->notify(new UserAted($reply));
             }
             session()->forget('at_users');
+        }
+    }
+
+    private function changeArticle(Reply $reply)
+    {
+
+        $article = $reply->article;
+        $article->last_reply_user_id = $reply->from;
+        $article->reply_count += 1;
+        if ($reply->parent_id == 0) {
+            //楼层数+1
+            $article->max_layer += 1;
+        }
+        $article->save();
+    }
+
+    private function writeDeletedLog(Reply $reply)
+    {
+        if ($reply->parent_id == 0) {
+            //写入reply_log
+            $replyLog = ReplyLog::firstOrCreate(['article_id' => $reply->article_id]);
+            //不能直接将$replyLog->data当数组操作,会报错
+            $data = $replyLog->data;
+            if ($data['deleted_layer']) {
+                array_push( $data['deleted_layer'], $reply->layer);
+                //去重
+                $deletedLayers = array_unique($data['deleted_layer']);
+            } else {
+                $deletedLayers = [$reply->layer];
+            }
+            $data['deleted_layer'] =$deletedLayers;
+            $replyLog->data = $data;
+            $replyLog->save();
         }
     }
 

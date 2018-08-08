@@ -9,7 +9,7 @@
         <div class="media-heading">
             <a href="{{ route('users.show', $notification->data['from_id']) }}">{{ $notification->data['from_name'] }}</a>
             评论了话题:
-            <a href="{{ route('articles.show',$notification->data['article_id']) }}">{{ $notification->data['article_title'] }}</a>
+            <a href="{{ $notification->data['link'] }}">{{ $notification->data['article_title'] }}</a>
 
             <span class="meta pull-right" title="{{ $notification->created_at }}">
                 <span class="glyphicon glyphicon-clock" aria-hidden="true"></span>

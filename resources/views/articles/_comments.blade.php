@@ -6,7 +6,7 @@
         </a>
     </div>
     <div class="media-body">
-        <h4 class="media-heading" id="reply{{ $reply->id }}"><a href="{{ route('users.show',$reply->replyFrom->id) }}" class="reply-from-name">{{ $reply->replyFrom->name }}</a>:<span class="pull-right" style="color: #999;font-size: 8px;">#</span></h4>
+        <h4 class="media-heading" id="reply{{ $reply->id }}"><a href="{{ route('users.show',$reply->replyFrom->id) }}" class="reply-from-name">{{ $reply->replyFrom->name }}</a>:<span class="pull-right" style="color: #999;font-size: 8px;">#{{ $reply->layer }}</span></h4>
         <div class="comment-body parent-comment-body">
             {!! $reply->content !!}
         </div>

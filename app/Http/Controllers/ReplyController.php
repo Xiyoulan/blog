@@ -34,7 +34,7 @@ class ReplyController extends Controller
         if($request->ajax()){
           return response()->json($reply, 201);
         }
-         return redirect(url()->previous().'#reply'.$reply->id)->with('success','发布成功');
+         return redirect($reply->link())->with('success','发布成功');
     }
 
     public function destroy(Reply $reply){
