@@ -5,11 +5,12 @@ namespace App\Models;
 class Article extends Model
 {
 
+    public $timestamps =false;
     protected $fillable = [
         'title', 'content', 'content_html', 'page_image', 'slug', 'is_draft',
         'category_id', 'deleted_at',
     ];
-    protected $dates = ['deleted_at', 'published_at'];
+    protected $dates = ['created_at','updated_at','deleted_at'];
 
     public function author()
     {

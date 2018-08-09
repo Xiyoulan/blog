@@ -12,7 +12,7 @@
             <ul class="dropdown-menu">
                 @if(Auth::id()==$user->id)
                 <li><a href="#">收藏</a></li>
-                <li><a href="#">通知</a></li>
+                <li><a href="{{ route('user.notification') }}">通知</a></li>
                 @endif
                 <li><a href="#">粉丝</a></li>
                 <li><a href="#">关注</a></li>

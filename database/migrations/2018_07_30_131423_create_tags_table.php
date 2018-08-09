@@ -20,9 +20,9 @@ class CreateTagsTable extends Migration
             //标签介绍
             $table->string('meta_description');
             //标签图片
-            $table->string('tag_image');
-            //在文章列表按时间升序排列博客文章（默认是降序）
-            $table->boolean('reverse_direction');
+//            $table->string('tag_image');
+//            //在文章列表按时间升序排列博客文章（默认是降序）
+//            $table->boolean('reverse_direction');
             $table->timestamps();
         });
     }

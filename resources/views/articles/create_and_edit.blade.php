@@ -49,10 +49,10 @@
                             <img id="article-page-image" class='img-responsive img-thumbnail' src="{{$article->page_image}}">
                             @endif
                         </div>
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label for="tag">标签:</label>
                             <input id ='tag' class="form-control" type="text" name="tag" value="" placeholder="支持搜索选择,也支持自定义添加"/>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="editor"><span style="color:red;">*</span> 内 容:</label>
                             <textarea  name="content_html" class="form-control" id="editor" rows="3" placeholder="请填入至少10个字符的内容。" required>{{ old('content_html', $article->content_html ) }}</textarea>

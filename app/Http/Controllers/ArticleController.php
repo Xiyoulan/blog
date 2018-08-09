@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use Carbon\Carbon;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles=Article::with('author','category','lastReplyUser')->withOrder($request->order)->paginate(10);
+        $articles = Article::with('author', 'category', 'lastReplyUser')->withOrder($request->order)->paginate(10);
         return view('articles.index', compact('articles'));
     }
 
@@ -48,6 +49,8 @@ class ArticleController extends Controller
                 $article->page_image = $result['path'];
             }
         }
+        $article->created_at = Carbon::now();
+        $article->updated_at = Carbon::now();
         $article->save();
         return redirect()->route('articles.show', [$article->id])->with('success', '成功创建话题!');
     }
@@ -70,6 +73,7 @@ class ArticleController extends Controller
                 $article->page_image = $result['path'];
             }
         }
+        $article->updated_at = Carbon::now();
         $article->update();
         return redirect()->route('articles.show', [$article->id])->with('success', '成功创建话题!');
     }
