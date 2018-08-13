@@ -2,10 +2,9 @@
     <div class="panel-heading">热门推荐</div>
     <div class="panel-body">
         <ul class="list-group">
-            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item">Morbi leo risus</a>
-            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            @foreach($recommended_articles as $article)
+            <a href="{{route('articles.show',$article->id)}}" class="list-group-item">{{ make_excerpt($article->title,30) }}</a>
+            @endforeach
         </ul>
     </div>
 </div>
@@ -14,10 +13,9 @@
     <div class="panel-heading">热门浏览</div>
     <div class="panel-body">
         <ul class="list-group">
-            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item">Morbi leo risus</a>
-            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item">Vestibulum at eros</a>
+            @foreach($view_articles as $article)
+            <a href="{{route('articles.show',$article->id)}}" class="list-group-item">  <span class="badge">{{ $article->view_count }}</span>{{ make_excerpt($article->title,30) }}</a>
+            @endforeach
         </ul>
     </div>
 </div>

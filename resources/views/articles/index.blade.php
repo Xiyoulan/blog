@@ -14,9 +14,10 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading">
                         <ul class="nav nav-tabs">
-                            <li role="presentation" class="{{ active_class( ! if_query('order', 'recent') && ! if_query('order', 'no-reply')) }}"><a href="{{ Request::url() }}?order=default">最近回复</a></li>
-                            <li role="presentation" class="{{ active_class(  if_query('order', 'recent')) }}"><a href="{{ Request::url() }}?order=recent">最新发布</a></li>
-                            <li role="presentation" class="{{ active_class(  if_query('order', 'no-reply')) }}"><a href="{{ Request::url() }}?order=no-reply">消灭零回复</a></li>
+                            <li role="presentation" class="{{ active_class( ! if_query('order', 'recent') && ! if_query('order', 'no-reply')&& ! if_query('order', 'recommended')) }}"><a href="{{ Request::url() }}?order=default">最近回复</a></li>
+                            <li role="presentation" class="{{ active_class(  if_query('order', 'recommended')) }}"><a href="{{ Request::url() }}?order=recommended">精华</a></li>
+                            <li role="presentation" class="{{ active_class(  if_query('order', 'recent')) }}"><a href="{{ Request::url() }}?order=recent">最新</a></li>
+                            <li role="presentation" class="{{ active_class(  if_query('order', 'no-reply')) }}"><a href="{{ Request::url() }}?order=no-reply">零回复</a></li>
                         </ul>
                     </div>
                     <div class="panel-body">
@@ -29,7 +30,15 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <div class="media-heading"><a href="{{ route('articles.show',$article->id) }}">{{ $article->title }}</a>
+                                <div class="media-heading">
+                                    @if($article->is_top)
+                                    <span class="label label-info">置顶</span>
+                                    @endif
+                                    @if($article->is_recommended)
+                                    <span class="label label-danger">精</span>
+                                    @endif
+                                    <a href="{{ route('articles.show',$article->id) }}">
+                                        {{ $article->title }}</a>
                                     <span class="meta pull-right">
                                         <a href="{{ route('categories.show', $article->category->id) }}" title="{{ $article->category->name }}">
                                             <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
@@ -67,7 +76,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                @include('commons._aside')
+                @include('commons._aside',['recommended_articles' =>App\Models\Link::getRecommendedCached(),
+                'view_articles'=>App\Models\Link::getViewCached(),
+                ])
             </div>
         </div>
     </div>

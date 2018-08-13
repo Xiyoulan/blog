@@ -21,9 +21,14 @@ class ReplyPolicy
         //
     }
 
+    public function create(User $user, Reply $reply)
+    {
+        return !$user->is_blocked;
+    }
+
     public function destroy(User $user, Reply $reply)
     {
-        return $user->id == $reply->from;
+        return $user->id == $reply->from && !$user->is_blocked;
     }
 
 }

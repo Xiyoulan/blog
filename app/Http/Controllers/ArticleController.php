@@ -19,7 +19,8 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::with('author', 'category', 'lastReplyUser')->withOrder($request->order)->paginate(10);
+        $articles = Article::with('author', 'category', 'lastReplyUser')->top()->withOrder($request->order)->paginate(10);
+        ;
         return view('articles.index', compact('articles'));
     }
 
@@ -35,12 +36,14 @@ class ArticleController extends Controller
 
     public function create(Article $article)
     {
+        $this->authorize('create', $article);
         $categories = Category::All();
         return view('articles.create_and_edit', compact('categories', 'article'));
     }
 
     public function store(ArticleRequest $request, Article $article, ImageUploadHandler $uploader)
     {
+        $this->authorize('create', $article);
         $article->fill($request->only(['content_html', 'title', 'category_id']));
         $article->user_id = \Auth::id();
         if ($request->page_image) {

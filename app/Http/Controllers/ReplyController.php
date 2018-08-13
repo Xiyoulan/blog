@@ -23,7 +23,7 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request, Reply $reply)
     {
-
+        $this->authorize('create',$reply);  
         $reply->content = $request->content;
         $reply->article_id = $request->article_id;
         $reply->parent_id = $request->parent_id ?: 0;

@@ -20,7 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'avatar', 'introduction'
     ];
-
+    protected $casts =[
+        'is_blocked' => 'boolean',
+        'is_activated' => 'boolean',
+    ]; 
     /**
      * The attributes that should be hidden for arrays.
      *

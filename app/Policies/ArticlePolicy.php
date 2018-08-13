@@ -11,24 +11,17 @@ class ArticlePolicy
 
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
+    public function create(User $user, Article $article){
+        return !$user->is_blocked;
     }
-
     public function update(User $user, Article $article)
     {
-        return $article->isAuthor($user->id);
+        return $article->isAuthor($user->id) && !$user->is_blocked;
     }
 
     public function destroy(User $user, Article $article)
     {
-        return $article->isAuthor($user->id);
+        return $article->isAuthor($user->id) && !$user->is_blocked;
     }
 
 }

@@ -2,15 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Article extends Model
 {
 
-    public $timestamps =false;
+    use SoftDeletes;
+
+    public $timestamps = false;
+    protected $casts = [
+        'is_top' => 'boolean',
+        'is_recommended' => 'boolean',
+    ];
     protected $fillable = [
         'title', 'content', 'content_html', 'page_image', 'slug', 'is_draft',
         'category_id', 'deleted_at',
     ];
-    protected $dates = ['created_at','updated_at','deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function author()
     {
@@ -42,6 +50,11 @@ class Article extends Model
         return $user_id == $this->user_id;
     }
 
+    public function scopeTop($query)
+    {
+        return $query->orderBy('is_top', 'desc');
+    }
+
     public function scopeRecentReplied($query)
     {
         // 当话题有新回复时，我们将编写逻辑来更新话题模型的 reply_count 属性，
@@ -54,6 +67,11 @@ class Article extends Model
         return $query->where('reply_count', 0)->recent();
     }
 
+    public function scopeRecommended($query)
+    {
+        return $query->where('is_recommended', 1)->recentReplied();
+    }
+
     public function scopeWithOrder($query, $order)
     {
         switch ($order) {
@@ -62,6 +80,9 @@ class Article extends Model
                 break;
             case 'no-reply':
                 $query->noReply();
+                break;
+            case 'recommended':
+                $query->recommended();
                 break;
             default:
                 $query->recentReplied();

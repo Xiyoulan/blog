@@ -40,7 +40,9 @@
                 @endauth
             </div>
             <div class="col-md-4">
-                @include('commons._aside')
+                @include('commons._aside',['recommended_articles' =>App\Models\Link::getRecommendedCached(),
+                'view_articles'=>App\Models\Link::getViewCached(),
+                ])
             </div>
 
         </div>
