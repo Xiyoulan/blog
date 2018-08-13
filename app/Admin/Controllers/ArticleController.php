@@ -74,10 +74,13 @@ class ArticleController extends Controller
                     $grid->model()->withTrashed();
                     $grid->id('ID')->sortable();
                     $grid->title('标题')->display(function($title) {
-                        //
-                        return str_limit($title, 20);
+                        $url = route('articles.show',[$this->id]);
+                        return  "<a href='$url'>".str_limit($title, 20)."</a>";
                     });
-                    $grid->author()->name('作者');
+                    $grid->author()->name('作者')->display(function($name) {
+
+                        return  str_limit($name, 20);
+                    });
                     $grid->category()->name('分类');
                     $states = [
                         'on' => ['value' => 1, 'text' => 'YES'],

@@ -12,7 +12,8 @@ class ArticleObserver
     public function deleted(Article $article)
     {
         //删除该话题下所有回复
-        \DB::table('replies')->where('article_id', $article->id)->delete();
+        //\DB::table('replies')->where('article_id', $article->id)->delete();
+        //$article->replies()->delete();
         $article->author()->decrement('article_count');
     }
 
@@ -25,6 +26,11 @@ class ArticleObserver
     }
 
     public function created(Article $article)
+    {
+        $article->author()->increment('article_count');
+    }
+
+    public function restored(Article $article)
     {
         $article->author()->increment('article_count');
     }

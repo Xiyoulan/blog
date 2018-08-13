@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Reply;
-use App\Models\Article;
 use App\Models\ReplyLog;
 use App\Notifications\ArticleReplied;
 use App\Handlers\AtUserHandler;
@@ -46,8 +45,8 @@ class ReplyObserver
         $reply->content = app(AtUserHandler::class)->replaceAtUserNames($content);
         if ($reply->parent_id == 0) {
             $reply->layer = $reply->article->max_layer + 1;
-        }else{
-            $reply->layer =$reply->parentReply->layer;
+        } else {
+            $reply->layer = $reply->parentReply->layer;
         }
         //通知被艾特的用户
         //1.获得被@的用户
@@ -91,6 +90,13 @@ class ReplyObserver
         }
     }
 
+    public function restored(Reply $reply)
+    {
+        $reply->ReplyFrom->increment('reply_count');
+        $reply->article->increment('reply_count');
+        $this->writeRestoreLog($reply);
+    }
+
     private function changeArticle(Reply $reply)
     {
 
@@ -112,13 +118,29 @@ class ReplyObserver
             //不能直接将$replyLog->data当数组操作,会报错
             $data = $replyLog->data;
             if ($data['deleted_layer']) {
-                array_push( $data['deleted_layer'], $reply->layer);
+                array_push($data['deleted_layer'], $reply->layer);
                 //去重
                 $deletedLayers = array_unique($data['deleted_layer']);
             } else {
                 $deletedLayers = [$reply->layer];
             }
-            $data['deleted_layer'] =$deletedLayers;
+            $data['deleted_layer'] = $deletedLayers;
+            $replyLog->data = $data;
+            $replyLog->save();
+        }
+    }
+
+    private function writeRestoreLog(Reply $reply)
+    {
+        if ($reply->parent_id == 0) {
+            //写入reply_log
+            $replyLog = ReplyLog::where(['article_id' => $reply->article_id])->firstOrFail();
+            //不能直接将$replyLog->data当数组操作,会报错
+            $data = $replyLog->data;
+            if ($data['deleted_layer']) {
+                $index = array_search($reply->layer,$data['deleted_layer'])+1;
+                $data['deleted_layer'] = array_slice($data['deleted_layer'], $index);
+            }
             $replyLog->data = $data;
             $replyLog->save();
         }
