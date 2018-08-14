@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
 use Carbon\Carbon;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\ArticleRequest;
@@ -41,7 +42,7 @@ class ArticleController extends Controller
         return view('articles.create_and_edit', compact('categories', 'article'));
     }
 
-    public function store(ArticleRequest $request, Article $article, ImageUploadHandler $uploader)
+    public function store(ArticleRequest $request, Article $article, Tag $tag, ImageUploadHandler $uploader)
     {
         $this->authorize('create', $article);
         $article->fill($request->only(['content_html', 'title', 'category_id']));
@@ -55,6 +56,8 @@ class ArticleController extends Controller
         $article->created_at = Carbon::now();
         $article->updated_at = Carbon::now();
         $article->save();
+        $tags = $request->input('tags', []);
+        $article->syncTags($tags);
         return redirect()->route('articles.show', [$article->id])->with('success', '成功创建话题!');
     }
 
@@ -62,6 +65,7 @@ class ArticleController extends Controller
     {
         $this->authorize('update', $article);
         $categories = Category::All();
+        $article->load('tags');
         return view('articles.create_and_edit', compact('categories', 'article'));
     }
 
@@ -78,6 +82,8 @@ class ArticleController extends Controller
         }
         $article->updated_at = Carbon::now();
         $article->update();
+        $tags = $request->input('tags', []);
+        $article->syncTags($tags);
         return redirect()->route('articles.show', [$article->id])->with('success', '成功创建话题!');
     }
 

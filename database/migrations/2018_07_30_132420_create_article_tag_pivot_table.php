@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAritleTagPivotTable extends Migration
+class CreateArticleTagPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAritleTagPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('aritle_tag_pivot', function (Blueprint $table) {
+        Schema::create('article_tag_pivot', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('article_id')->unsigned()->index();
             $table->integer('tag_id')->unsigned()->index();
@@ -27,6 +27,6 @@ class CreateAritleTagPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aritle_tag_pivot');
+        Schema::dropIfExists('article_tag_pivot');
     }
 }

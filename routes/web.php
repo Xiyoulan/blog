@@ -34,3 +34,4 @@ Route::delete('followers/{user}','FollowerController@unfollow')->name('users.unf
 Route::get('user/notifications','NotificationController@index')->name('user.notification');
 
 Route::get('/atwho','UserController@atwho')->name('atwho');
+Route::get('/tags','TagController@searchTags')->name('tags.searchTags');

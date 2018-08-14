@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Tag;
 class Article extends Model
 {
 
@@ -33,6 +33,11 @@ class Article extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class, 'article_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tag_pivot', 'article_id', 'tag_id');
     }
 
     public function lastReplyUser()
@@ -108,6 +113,21 @@ class Article extends Model
     private function cleanUrl($url)
     {
         return '/' . ltrim($url, '/');
+    }
+
+    public function syncTags(array $tags)
+    {
+        Tag::addNeededTags($tags);
+
+        if (count($tags)) {
+            //同步中间表
+            $this->tags()->sync(
+                    Tag::whereIn('name', $tags)->pluck('id')->all()
+            );
+            return;
+        }
+
+        $this->tags()->detach();
     }
 
 }
