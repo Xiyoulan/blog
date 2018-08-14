@@ -20,10 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'avatar', 'introduction'
     ];
-    protected $casts =[
+    protected $casts = [
         'is_blocked' => 'boolean',
         'is_activated' => 'boolean',
-    ]; 
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -102,6 +103,27 @@ class User extends Authenticatable
         $this->notification_count = 0;
         $this->save();
         $this->unreadNotifications->markAsRead();
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        if (!$value) {
+            // 默认头像
+            return config('application.default_avatar');
+        }
+        if (starts_with($value, ['http://', 'https://'])) {
+            return $value;
+        }
+        $url = $this->cleanUrl($value);
+        if (starts_with($url, '/storage')) {
+            return config('app.url') . $url;
+        }
+        return config('app.url') . '/storage' . $url;
+    }
+
+    private function cleanUrl($url)
+    {
+        return '/' . ltrim($url, '/');
     }
 
 }

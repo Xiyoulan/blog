@@ -90,4 +90,24 @@ class Article extends Model
         }
     }
 
+    public function getPageImageAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+        if (starts_with($value, ['http://', 'https://'])) {
+            return $value;
+        }
+        $url = $this->cleanUrl($value);
+        if (starts_with($url, '/storage')) {
+            return config('app.url') . $url;
+        }
+        return config('app.url') . '/storage' . $url;
+    }
+
+    private function cleanUrl($url)
+    {
+        return '/' . ltrim($url, '/');
+    }
+
 }

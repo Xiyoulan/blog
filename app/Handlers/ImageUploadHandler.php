@@ -39,7 +39,7 @@ class ImageUploadHandler
         }
         
         return [
-            'path' => config('app.url') . "/storage/$folder_name/$filename"
+            'path' =>"/storage/$folder_name/$filename"
         ];
     }
     public function reduceSize($file_path, $max_width)

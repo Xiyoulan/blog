@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable()->comment('描述');
             $table->integer('article_count')->default(0)->comment('文章数量');
             $table->integer('parent_id')->comment('分类父id')->index()->default(0);
+            $table->integer('order')->unsigned()->default(0);
             $table->timestamps();
         });
     }
