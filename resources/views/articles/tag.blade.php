@@ -1,26 +1,16 @@
 @extends('layouts.app')
 
-@section('title',isset($category)?$category->name:'话题列表')
+@section('title','Tag:'.$tag->name)
 
 @section('content')
 <div class="widewrapper main">
     <div class="container">
         <div class="row">
             <div class="col-md-8 app-main">
-                @if (isset($category))
-                <div class="alert alert-info" role="alert">
-                    {{ $category->name }} ：{{ $category->description }}
-                </div>
-                @endif
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                            <li role="presentation" class="{{ active_class( ! if_query('order', 'recent') && ! if_query('order', 'no-reply')&& ! if_query('order', 'recommended')) }}"><a href="{{ Request::url() }}?order=default">最近回复</a></li>
-                            <li role="presentation" class="{{ active_class(  if_query('order', 'recommended')) }}"><a href="{{ Request::url() }}?order=recommended">精华</a></li>
-                            <li role="presentation" class="{{ active_class(  if_query('order', 'recent')) }}"><a href="{{ Request::url() }}?order=recent">最新</a></li>
-                            <li role="presentation" class="{{ active_class(  if_query('order', 'no-reply')) }}"><a href="{{ Request::url() }}?order=no-reply">零回复</a></li>
-                        </ul>
+                        <h3>Tag:&nbsp;{{ $tag->name }} </h3>
                     </div>
                     <div class="panel-body">
                         @if(count($articles))
@@ -80,7 +70,7 @@
                         </div>
                         <hr>                   
                         @endforeach
-                        {!! $articles->appends(Request::only(['order']))->links() !!}
+                        {!! $articles->links() !!}
                         @else
                         o(╯□╰)o  &nbsp; 空空如也~
                         @endif
@@ -97,3 +87,5 @@
     </div>
 </div>
 @endsection
+
+

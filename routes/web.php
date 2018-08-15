@@ -15,11 +15,11 @@ Route::post('/register/verificationCode','Auth\RegisterController@sendVerificati
 Route::post('/register/phone','Auth\RegisterController@registerWithPhone')->name('registerWithPhone');
 Route::post('/register/supplement','Auth\RegisterController@supplement')->name('supplement');
 Route::get('/register/append','Auth\RegisterController@append')->name('append');
-Route::get('/','SimplePageController@index');
+Route::get('/','ArticleController@index');
 
 Route::resource('articles','ArticleController');
 Route::post('upload_image', 'ArticleController@uploadImage')->name('articles.uploadImage');
-Route::resource('categories','CategoryController');
+Route::resource('categories','CategoryController',['only'=>'show']);
 
 Route::resource('users','UserController',['except'=>'edit']);
 Route::get('users/{user}/active/{token?}','UserController@active')->name('active');
@@ -35,3 +35,4 @@ Route::get('user/notifications','NotificationController@index')->name('user.noti
 
 Route::get('/atwho','UserController@atwho')->name('atwho');
 Route::get('/tags','TagController@searchTags')->name('tags.searchTags');
+Route::get('/tags/{name}','TagController@show')->name('tags.show');

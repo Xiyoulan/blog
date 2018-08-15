@@ -3,15 +3,12 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic");
 
 // Variables
-//@import "variables";
+@import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 body {
     font-family: Raleway,Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
-}
-.badge-hint{
-    background-color:#d9534f;
 }
 /* header */
 .navbar-static-top {
@@ -46,6 +43,12 @@ body {
     a{
         color: #f4645f;
     }
+}
+#select-tags .select2-selection__choice{
+    background-color: #3c8dbc;
+}
+.badge-hint{
+    background-color:#d9534f;
 }
 .footer {
     position: absolute;
@@ -103,7 +106,7 @@ Blog styles
 }
 
 .app-main {
-    padding-top: 36px;
+    padding-top: 2px;
     padding-bottom: 20px;
 }
 
@@ -139,6 +142,7 @@ Blog styles
 
 /** main **/
 .widewrapper {
+    padding-top: 5px;
     background-color: #fff;
 }
 /*app-aside*/
@@ -294,7 +298,7 @@ Blog main page paging
     }
 }
 
-/* ... aand the main app article */
+/* ... and the main app article */
 .app-post {
     padding-bottom:30px;
 
@@ -330,6 +334,9 @@ Blog main page paging
         }
     }
 } 
+.footer-meta{
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.1);
+}
 @media (max-width: 979px) {
     .app-post header {
 
@@ -507,21 +514,30 @@ Blog main page paging
     padding-bottom:40px;
 }
 /* articles index page*/
-.articles-index-page,.categories-show-page{
+.-page,.tags-show-page,.articles-index-page,.categories-show-page{
     .app-main{
         padding-top:0px;
+        hr{
+            margin-top: 12px;
+        }
         .panel-heading{
             border-bottom:#fff;
             background-color: #fff;
         }
+        .media-left{
+            img{
+                max-width:64px;
+            }
+
+        }
         .media-heading {
             padding-bottom:5px;
-            font-size: 13px;
+            font-size: 12px;
             .meta{
-                font-size: 13px;
+                font-size: 12px;
                 a{
                     color:#999;
-                    font-size: 13px;   
+                    font-size: 12px;   
                 }
 
 
@@ -529,15 +545,52 @@ Blog main page paging
         }
         .media-body{
             color:#999;
-            font-size: 14px;
+            font-size: 13px;
             .media-heading{
-                font-size: 15px;
+                font-size: 14px;
             }
         }
         .last-reply-user {
             color:#999;
             a{
                 color:#999;
+            }
+        }
+        .article-tags{
+            margin-top:5px;
+            margin-left: 70px;
+        }
+    }
+}
+@media(max-width:444px){
+    .-page,.tags-show-page,.articles-index-page,.categories-show-page{
+        .app-main{
+            .media-left{
+                img{
+                    max-width:48px;
+                }
+
+            }
+            .media-heading {
+                font-size: 10px;
+                .meta{
+                    font-size: 10px;
+                    a{
+                        font-size: 10px;   
+                    }
+
+
+                }
+            } 
+            .media-body{
+                color:#999;
+                font-size: 10px;
+                .media-heading{
+                    font-size: 11px;
+                }
+            }
+            .last-reply-user {
+                font-size: 11px;
             }
         }
     }

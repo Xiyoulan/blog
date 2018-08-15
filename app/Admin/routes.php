@@ -47,4 +47,26 @@ Route::group([
         ]
     ]);
     $router->post('replies/{reply}/restore', 'ReplyController@restore')->name('admin.replies.restore');
+    $router->resource('categories', 'CategoryController', [
+        'names' => [
+            'create' => 'admin.categories.create',
+            'store' => 'admin.categories.create',
+            'index' => 'admin.categories.index',
+            'show' => 'admin.categories.show',
+            'edit' => 'admin.categories.edit',
+            'update' => 'admin.categories.update',
+            'destroy' => 'admin.categories.destroy',
+        ],
+    ]);
+    $router->resource('tags', 'TagController', [
+        'names' => [
+            'create' => 'admin.tags.create',
+            'store' => 'admin.tags.create',
+            'index' => 'admin.tags.index',
+            'show' => 'admin.tags.show',
+            'edit' => 'admin.tags.edit',
+            'update' => 'admin.tags.update',
+            'destroy' => 'admin.tags.destroy',
+        ],
+    ]);
 });

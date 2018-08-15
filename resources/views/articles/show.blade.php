@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('title',$article->title) 
+
 @section('content')
 <div class="widewrapper main">
     <div class="container">
@@ -28,7 +30,24 @@
                         </div>
                     </div>
                 </article>
-                <hr>   
+                <hr> 
+                <div class="well well-sm footer-meta">
+                    <div>分类:&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+                        <a href="{{route('categories.show',$category->id)}}">{{$category->name}}</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>标签:&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;
+                        @if(count($tags))
+                        @foreach($tags as $tag)
+                        <a href="{{ route('tags.show',$tag->name) }}">{{ $tag->name }}</a>
+                        @if(!$loop->last)
+                        ,
+                        @endif
+                        @endforeach
+                        @endif
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
                 <!--  comment begin-->
                 <div id="comments" class="comment-box">
                     @include('articles._comments')
@@ -42,6 +61,7 @@
             <div class="col-md-4">
                 @include('commons._aside',['recommended_articles' =>App\Models\Link::getRecommendedCached(),
                 'view_articles'=>App\Models\Link::getViewCached(),
+                 'hot_tags'=>App\Models\Tag::getHotTags(),
                 ])
             </div>
 

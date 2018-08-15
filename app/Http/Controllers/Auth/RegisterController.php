@@ -42,7 +42,7 @@ use RegistersUsers;
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('throttle:1')->only('sendVerificationCode');
+        $this->middleware('throttle:10,1440')->only('sendVerificationCode');
     }
 
     public function sendVerificationCode(PhoneRegisterRequest $request, EasySms $easySms)
@@ -92,11 +92,11 @@ use RegistersUsers;
         $data = session()->get('phone_verification');
         if ($data['phone'] != $phone) {
             session()->forget('phone_verification');
-            return back()->with('danger', '手机号码有误!');
+            return redirect()->route('register', ['way'=>'phone'])->with('danger', '手机号码有误!')->withInput();
         }
         if ($data['code'] != $verificationCode) {
             session()->forget('phone_verification');
-            return back()->with('danger', '手机号码和验证码不匹配!');
+            return redirect()->route('register', ['way'=>'phone'])->with('danger', '手机号码和验证码不匹配!')->withInput();
         }
         return redirect()->route('append');
     }

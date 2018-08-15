@@ -20,8 +20,7 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::with('author', 'category', 'lastReplyUser')->top()->withOrder($request->order)->paginate(10);
-        ;
+        $articles = Article::with('author', 'category', 'lastReplyUser','tags')->top()->withOrder($request->order)->paginate(20);
         return view('articles.index', compact('articles'));
     }
 
@@ -32,7 +31,9 @@ class ArticleController extends Controller
                                 return $query->with('replyFrom', 'replyTo')->ancient();
                             }])->parentNode()->ancient()->paginate(config('application.replies_per_page'));
         $article->increment('view_count', 1);
-        return view('articles.show', compact('article', 'replies'));
+        $category =$article->category;
+        $tags = $article->tags;
+        return view('articles.show', compact('article', 'replies','category','tags'));
     }
 
     public function create(Article $article)

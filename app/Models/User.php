@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
 
+    use LastActivedAtHelper;
     use Notifiable {
         notify as protected laravelNotify;
     }

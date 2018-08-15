@@ -11,7 +11,7 @@ class CategoryController extends Controller
 
     public function show(Category $category,Request $request)
     {
-        $articles =Article::where('category_id',$category->id)->top()->withOrder($request->order)->with('category','author','lastReplyUser')->paginate(20);
+        $articles =Article::where('category_id',$category->id)->top()->withOrder($request->order)->with('category','author','lastReplyUser','tags')->paginate(20);
         return view('articles.index', compact('articles','category'));
     }
 

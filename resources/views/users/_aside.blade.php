@@ -13,8 +13,8 @@
                         <span style="color: #222">简介:</span>{{$user->introduction?:"这个人很懒,什么都没留下~"}}
                     </p>
                 </div>
-                注册于 <span class="activated-time">{{$user->created_at->diffForHumans()}}</span>
-                活跃于 <span class="activated-time">1周前</span>
+                注册于 <span class="activated-time">{{ $user->created_at->diffForHumans() }}</span>
+                活跃于 <span class="activated-time">{{ $user->last_actived_at->diffForHumans() }}  </span>
                 @auth
                 @if(Auth::id()!=$user->id)
                 @if(!Auth::user()->isFollowing($user->id))

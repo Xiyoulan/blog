@@ -52,13 +52,13 @@
                         <div class="form-group">
                             <label for="tag">标签:</label>
                             <select id="select-tags" class="form-control" name="tags[]" multiple="multiple">
-                             @if($article->id && count($article->tags)>0)
-                             @foreach($article->tags as $tag)
-                             <option value="{{$tag->name}}" selected>
-                                 {{$tag->name}}
+                            
+                             @foreach(old('tags', $article->tags->pluck('name')->toArray()) as $tag)
+                             <option value="{{ $tag }}" selected>
+                                 {{ $tag }}
                              </option>
                              @endforeach
-                             @endif
+                        
                             </select>
                         </div>
                         <div class="form-group">
@@ -121,7 +121,7 @@ $(document).ready(function () {
         language: "zh-CN",
         placeholder: '支持搜索选择，也支持自定义添加',
         tags: true,
-        maximumSelectionLength: 5  //最多能够选择的个数
+        maximumSelectionLength: 10  //最多能够选择的个数
     });
     var editor = new Simditor({
         textarea: $('#editor'),

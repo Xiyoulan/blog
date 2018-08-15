@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Traits\HotTagsHelper;
 class Tag extends Model
 {
+    use HotTagsHelper;
     protected $fillable =[
         'name','meta_description'
     ];
