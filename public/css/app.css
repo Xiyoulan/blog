@@ -9064,17 +9064,9 @@ Blog main page paging
   border-color: #d3e0e9;
 }
 
-.users-show-page .user-aside .panel-heading {
-  background-color: f1f1f1;
-}
-
 .users-show-page .user-aside .panel-heading .media-left a,
 .users-show-page .user-aside .panel-heading .media-left img {
   max-width: 72px;
-}
-
-.users-show-page .user-aside .panel-heading .media-left a:hover {
-  border: 2xp solid #ccc;
 }
 
 .users-show-page .user-aside .panel-heading .dio {
@@ -9093,7 +9085,7 @@ Blog main page paging
 }
 
 .users-show-page .user-aside .panel-heading button span {
-  margin-right: 5xp;
+  margin-right: 5px;
 }
 
 .users-show-page .user-aside .panel-body .list-group .glyphicon {
@@ -9231,7 +9223,7 @@ Blog main page paging
 
 .articles-edit-page #article-page-image,
 .article-create-page #article-page-image {
-  margin-top: 5xp;
+  margin-top: 5px;
   max-width: 300px;
 }
 

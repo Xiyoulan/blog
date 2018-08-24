@@ -602,13 +602,10 @@ Blog main page paging
             border-color: #d3e0e9;
         }
         .panel-heading{
-            background-color: f1f1f1;
+            //background-color: f1f1f1;
             .media-left{
                 a,img{
                     max-width: 72px;
-                }
-                a:hover{
-                    border:2xp solid #ccc;  
                 }
             }
             .dio{
@@ -623,7 +620,7 @@ Blog main page paging
                 margin-top: 5px;
                 color: #fff;
                 span{
-                    margin-right: 5xp;
+                    margin-right: 5px;
                 }
             }
         }
@@ -770,7 +767,7 @@ Blog main page paging
         padding-bottom: 5px;
     }
     #article-page-image{
-        margin-top:5xp;
+        margin-top:5px;
         max-width:300px;
     }
 }
