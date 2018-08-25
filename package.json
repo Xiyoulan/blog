@@ -17,5 +17,9 @@
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "animate.css": "^3.7.0",
+        "sweetalert2": "^7.26.12"
     }
 }
