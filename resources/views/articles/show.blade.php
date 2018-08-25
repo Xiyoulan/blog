@@ -18,11 +18,12 @@
                     @endif
                     <div class="body">
                         <h1 class="article-title"><center>{{ $article->title }}</center></h1>
-                        <div class="meta">
+                        <div class="meta text-center">
                             <i class="glyphicon glyphicon-user"></i> <a href="{{ route('users.show',$article->author->id) }}">{{ $article->author->name }}</a>
-                            <i class="glyphicon glyphicon-calendar"></i><a href="#">{{ datetime_for_humans($article->created_at) }}</a>
-                            <i class="glyphicon glyphicon-eye-open"></i><span class="data"><a>{{ $article->view_count }}</a></span>
-                            <i class="glyphicon glyphicon-comment"></i><span class="data"><a href="#comments">{{ $article->reply_count }}</a></span>
+                            &nbsp;⋅&nbsp; <i class="glyphicon glyphicon-calendar"></i>{{ datetime_for_humans($article->created_at) }}
+                            &nbsp;⋅&nbsp; <i class="glyphicon glyphicon-comment"></i><span class="data"><a href="#comments">{{ $article->reply_count }}</a></span>
+                            &nbsp;⋅&nbsp; <i class="glyphicon glyphicon-thumbs-up"></i><span class="data">{{ $article->favoriter_count }}</span>
+                            &nbsp;⋅&nbsp; <i class="glyphicon glyphicon-eye-open"></i><span class="data">{{ $article->view_count }}</span>
                         </div>
                         <hr>
                         <div class="article-body">
@@ -48,6 +49,17 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                @auth
+                <div class="favorites_box">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+
+                            <favorite-button :article-id="{{  $article->id }}" :is-favorite=" {{Auth::user()->isFavorite($article->id) ?1:0}}"></favorite-button>
+
+                    </div>
+                </div>
+                </div>
+                @endauth
                 <!--  comment begin-->
                 <div id="comments" class="comment-box">
                     @include('articles._comments')
@@ -59,10 +71,7 @@
                 @endauth
             </div>
             <div class="col-md-4">
-                @include('commons._aside',['recommended_articles' =>App\Models\Link::getRecommendedCached(),
-                'view_articles'=>App\Models\Link::getViewCached(),
-                 'hot_tags'=>App\Models\Tag::getHotTags(),
-                ])
+                @include('commons._aside')
             </div>
 
         </div>

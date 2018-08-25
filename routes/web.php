@@ -31,6 +31,8 @@ Route::get('replies/{reply}/child','ReplyController@showChildReplies')->name('re
 Route::post('replies/upload_image', 'ReplyController@uploadImage')->name('replies.uploadImage');
 Route::post('followers/{user}','FollowerController@follow')->name('users.follow');
 Route::delete('followers/{user}','FollowerController@unfollow')->name('users.unfollow');
+Route::post('favorites/{article}','FavoriteArticleController@favorite')->name('users.favorite');
+Route::delete('favorites/{article}','FavoriteArticleController@unFavorite')->name('users.unFavorite');
 Route::get('user/notifications','NotificationController@index')->name('user.notification');
 
 Route::get('/atwho','UserController@atwho')->name('atwho');

@@ -65,7 +65,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
-
+    public function favoriteArticles(){
+        return $this->belongsToMany(Article::class,'favorites','user_id','article_id');
+    }
+    public function favorite($article_ids){
+        if (!is_array($article_ids)) {
+            $article_ids = compact('article_ids');
+        }
+        $this->favoriteArticles()->sync($article_ids, false);
+    }
+    public function unFavorite($article_ids){
+        if (!is_array($article_ids)) {
+            $article_ids = compact('article_ids');
+        }
+        $this->favoriteArticles()->detach($article_ids, false);
+    }
+    public function isFavorite($article_id){
+        return $this->favoriteArticles->contains($article_id);
+    }
     public function isFollowing($user_id)
     {
         return $this->followings->contains($user_id);

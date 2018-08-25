@@ -11,8 +11,8 @@ export default {
         })
 
         // 添加全局方法
-        Vue.swal = swal
+        Vue.swal = swal;
         // 添加实例方法
-        Vue.prototype.$swal = swal
+        Vue.prototype.$swal = swal;
     }
 }

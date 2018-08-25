@@ -78,10 +78,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                @include('commons._aside',['recommended_articles' =>App\Models\Link::getRecommendedCached(),
-                'view_articles'=>App\Models\Link::getViewCached(),
-                'hot_tags'=>App\Models\Tag::getHotTags(),
-                ])
+                @include('commons._aside')
             </div>
         </div>
     </div>
