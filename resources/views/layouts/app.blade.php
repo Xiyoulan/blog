@@ -18,7 +18,7 @@
     <body>
         <div id="app" class="{{ route_class() }}-page">
             @include('layouts._header')
-            <div class="container"> @include('commons._message')</div>
+            <div class="container"  id="main-container"> @include('commons._message')</div>
             @yield('content')
             @include('layouts._footer') 
         </div>

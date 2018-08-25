@@ -13,7 +13,7 @@
     export default {
         props: {
             userId: [String, Number],
-            isFollow:[String,Number],
+            isFollow:false,
         },
         data() {
             return {
@@ -28,7 +28,8 @@
                 if (this.show) {
                     axios.post('/followers/' + userId).then(res => {
                         this.show = false;
-                    }).catch(res=>console.log(res));
+                        this.$message.show('成功关注!','success');
+                    }).catch(res=> this.$message.show('关注失败','warning'));
                 }
             },
             unFollow() {
@@ -36,11 +37,11 @@
                 if (!this.show) {
                     axios.delete('/followers/' + userId).then(res => {
                         this.show = true;
-                    }).catch(res=>console.log(res));
+                        this.$message.show('取消关注成功!','success');
+                    }).catch(res=> this.$message.show('取消失败','warning'));
                 }
 
             },
         },
-        watch: {}
     }
 </script>
