@@ -11857,7 +11857,7 @@ button.close {
 }
 
 body {
-  font-family: Raleway,Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  font-family: Raleway, Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial, sans-serif;
 }
 
 .popover {
@@ -12040,10 +12040,6 @@ Blog styles
   .app-main:before {
     display: none;
   }
-}
-
-.app-aside {
-  padding-top: 36px;
 }
 
 @media (max-width: 767px) {
@@ -12483,21 +12479,24 @@ Blog main page paging
 .-page .app-main,
 .tags-show-page .app-main,
 .articles-index-page .app-main,
-.categories-show-page .app-main {
+.categories-show-page .app-main,
+.users-favorites-page .app-main {
   padding-top: 0px;
 }
 
 .-page .app-main hr,
 .tags-show-page .app-main hr,
 .articles-index-page .app-main hr,
-.categories-show-page .app-main hr {
+.categories-show-page .app-main hr,
+.users-favorites-page .app-main hr {
   margin-top: 12px;
 }
 
 .-page .app-main .panel-heading,
 .tags-show-page .app-main .panel-heading,
 .articles-index-page .app-main .panel-heading,
-.categories-show-page .app-main .panel-heading {
+.categories-show-page .app-main .panel-heading,
+.users-favorites-page .app-main .panel-heading {
   border-bottom: #fff;
   background-color: #fff;
 }
@@ -12505,14 +12504,16 @@ Blog main page paging
 .-page .app-main .media-left img,
 .tags-show-page .app-main .media-left img,
 .articles-index-page .app-main .media-left img,
-.categories-show-page .app-main .media-left img {
+.categories-show-page .app-main .media-left img,
+.users-favorites-page .app-main .media-left img {
   max-width: 64px;
 }
 
 .-page .app-main .media-heading,
 .tags-show-page .app-main .media-heading,
 .articles-index-page .app-main .media-heading,
-.categories-show-page .app-main .media-heading {
+.categories-show-page .app-main .media-heading,
+.users-favorites-page .app-main .media-heading {
   padding-bottom: 5px;
   font-size: 12px;
 }
@@ -12520,14 +12521,16 @@ Blog main page paging
 .-page .app-main .media-heading .meta,
 .tags-show-page .app-main .media-heading .meta,
 .articles-index-page .app-main .media-heading .meta,
-.categories-show-page .app-main .media-heading .meta {
+.categories-show-page .app-main .media-heading .meta,
+.users-favorites-page .app-main .media-heading .meta {
   font-size: 12px;
 }
 
 .-page .app-main .media-heading .meta a,
 .tags-show-page .app-main .media-heading .meta a,
 .articles-index-page .app-main .media-heading .meta a,
-.categories-show-page .app-main .media-heading .meta a {
+.categories-show-page .app-main .media-heading .meta a,
+.users-favorites-page .app-main .media-heading .meta a {
   color: #999;
   font-size: 12px;
 }
@@ -12535,7 +12538,8 @@ Blog main page paging
 .-page .app-main .media-body,
 .tags-show-page .app-main .media-body,
 .articles-index-page .app-main .media-body,
-.categories-show-page .app-main .media-body {
+.categories-show-page .app-main .media-body,
+.users-favorites-page .app-main .media-body {
   color: #999;
   font-size: 13px;
 }
@@ -12543,28 +12547,32 @@ Blog main page paging
 .-page .app-main .media-body .media-heading,
 .tags-show-page .app-main .media-body .media-heading,
 .articles-index-page .app-main .media-body .media-heading,
-.categories-show-page .app-main .media-body .media-heading {
+.categories-show-page .app-main .media-body .media-heading,
+.users-favorites-page .app-main .media-body .media-heading {
   font-size: 14px;
 }
 
 .-page .app-main .last-reply-user,
 .tags-show-page .app-main .last-reply-user,
 .articles-index-page .app-main .last-reply-user,
-.categories-show-page .app-main .last-reply-user {
+.categories-show-page .app-main .last-reply-user,
+.users-favorites-page .app-main .last-reply-user {
   color: #999;
 }
 
 .-page .app-main .last-reply-user a,
 .tags-show-page .app-main .last-reply-user a,
 .articles-index-page .app-main .last-reply-user a,
-.categories-show-page .app-main .last-reply-user a {
+.categories-show-page .app-main .last-reply-user a,
+.users-favorites-page .app-main .last-reply-user a {
   color: #999;
 }
 
 .-page .app-main .article-tags,
 .tags-show-page .app-main .article-tags,
 .articles-index-page .app-main .article-tags,
-.categories-show-page .app-main .article-tags {
+.categories-show-page .app-main .article-tags,
+.users-favorites-page .app-main .article-tags {
   margin-top: 5px;
   margin-left: 70px;
 }
@@ -12623,35 +12631,35 @@ Blog main page paging
 
 /* users show page */
 
-.users-show-page .user-aside .panel {
+.user-aside .panel {
   border-color: #d3e0e9;
 }
 
-.users-show-page .user-aside .panel-heading .media-left a,
-.users-show-page .user-aside .panel-heading .media-left img {
+.user-aside .panel-heading .media-left a,
+.user-aside .panel-heading .media-left img {
   max-width: 72px;
 }
 
-.users-show-page .user-aside .panel-heading .dio {
+.user-aside .panel-heading .dio {
   color: #c1c1c1;
   padding-bottom: 20px;
 }
 
-.users-show-page .user-aside .panel-heading .activated-time {
+.user-aside .panel-heading .activated-time {
   color: #ccc;
   padding-right: 20px;
 }
 
-.users-show-page .user-aside .panel-heading button {
+.user-aside .panel-heading button {
   margin-top: 5px;
   color: #fff;
 }
 
-.users-show-page .user-aside .panel-heading button span {
+.user-aside .panel-heading button span {
   margin-right: 5px;
 }
 
-.users-show-page .user-aside .panel-body .list-group .glyphicon {
+.user-aside .panel-body .list-group .glyphicon {
   padding-right: 5px;
 }
 
@@ -12775,6 +12783,29 @@ Blog main page paging
   .users-show-page .app-main #article .article-list .media .media-meta a:first-of-type {
     margin-left: 1px;
   }
+}
+
+.users-followings-page .panel-heading,
+.users-followers-page .panel-heading {
+  text-align: center;
+  border-bottom-width: 0px;
+}
+
+.users-followings-page .list-group .list-group-item,
+.users-followers-page .list-group .list-group-item {
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
+.users-followings-page .list-group .list-group-item a,
+.users-followers-page .list-group .list-group-item a {
+  color: #1c2529;
+}
+
+.users-followings-page .list-group .list-group-item .list-avatar,
+.users-followers-page .list-group .list-group-item .list-avatar {
+  max-width: 32px;
+  max-height: 32px;
 }
 
 /*articles-edit-page articles-create-page*/

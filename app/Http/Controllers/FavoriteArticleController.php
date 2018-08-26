@@ -34,8 +34,8 @@ class FavoriteArticleController extends Controller
         return response('success');
 
     }
-//    public function favoriteArticles(User $user){
-//          $articles=$user->favoriteArticles();
-//          return view('users.favorite_articles',compact('articles'));
-//    }
+    public function favoriteArticles(User $user){
+          $articles=$user->favoriteArticles()->with('category', 'author', 'tags')->paginate(20);
+          return view('users.favorite',compact('articles','user'));
+    }
 }

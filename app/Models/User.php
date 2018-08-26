@@ -58,15 +58,17 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id')->withTimestamps();
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')->withTimestamps();
     }
     public function favoriteArticles(){
-        return $this->belongsToMany(Article::class,'favorites','user_id','article_id');
+        return $this->belongsToMany(Article::class,'favorites','user_id','article_id')
+            ->orderBy('favorites.created_at', 'desc')
+            ->withTimestamps();
     }
     public function favorite($article_ids){
         if (!is_array($article_ids)) {

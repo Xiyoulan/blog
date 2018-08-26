@@ -9,6 +9,7 @@ use App\Observers\UserObserver;
 use App\Observers\ArticleObserver;
 use App\Observers\ReplyObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Reply::observe(ReplyObserver::class);
         Article::observe(ArticleObserver::class);
+        //默认分页
+        Paginator::defaultView('pagination.default-sm');
+        Paginator::defaultSimpleView('pagination.simple-default-sm');
     }
 
     /**
