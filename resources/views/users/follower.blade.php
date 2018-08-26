@@ -31,7 +31,7 @@
 
                             </ul>
                             <div class="text-center">
-                                {!! $users->links('pagination.default-sm')  !!} 
+                                {!! $users->links('pagination.default-sm')  !!}
                             </div>
                         </div>
                     </div>

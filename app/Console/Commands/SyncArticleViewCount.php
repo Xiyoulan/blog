@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\Article;
 use Illuminate\Console\Command;
 
-class SyncUserActivedAt extends Command
+class SyncArticleViewCount extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'xiyoulan:sync-user-actived-at {--D|date=yesterday : 缓存数据的时间段,支持yesterday 和 now 两种}';
+    protected $signature = 'xiyoulan:sync-article-view-count {--D|date=yesterday : 缓存数据的时间段,支持yesterday 和 now 两种}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '同步缓存的用户活跃时间到数据库';
+    protected $description = '同步缓存话题的浏览次数到数据库';
 
     /**
      * Create a new command instance.
@@ -37,20 +36,20 @@ class SyncUserActivedAt extends Command
      *
      * @return mixed
      */
-    public function handle(User $user)
+    public function handle(Article $article)
     {
         $date = $this->option('date');
         if($date=='yesterday'){
-            $this->info('同步昨日的数据开始');
-            $user->syncUserActivedAtOfYesterday();
+            $this->info('同步昨日数据开始');
+            $article->syncViewCountOfYesterday();
             $this->info('同步成功!');
         }elseif ($date == 'now'){
-            $this->info('同步今天的数据开始');
-            $user->syncUserActivedAtNow();
+            $this->info('同步今天数据开始');
+            $article->syncViewCountNow();
             $this->info('同步成功!');
         }else{
             $this->error('date参数错误!');
         }
-    }
 
+    }
 }

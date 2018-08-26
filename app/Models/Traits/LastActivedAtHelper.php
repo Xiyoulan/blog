@@ -26,10 +26,18 @@ trait LastActivedAtHelper
     }
 
     //同步数据到数据库中
-    public function syncUserActivedAt()
+    public function syncUserActivedAtOfYesterday()
     {    //获取前一天日期
         $date = Carbon::yesterday()->toDateString();
-        // Redis 哈希表的命名，如：larabbs_last_actived_at_2017-10-21
+        $this->syncUserActivedAtByDate($date);
+    }
+    public function syncUserActivedAtNow(){
+        //获取今天日期
+        $date = Carbon::now()->toDateString();
+        $this->syncUserActivedAtByDate($date);
+    }
+    public function syncUserActivedAtByDate($date){
+        // Redis 哈希表的命名，如：app_last_actived_at__2018-7-21
         $hash = $this->getHashFromDateString($date);
         $datas = Redis::hGetAll($hash);
         foreach ($datas as $user_id => $actived_at) {
@@ -44,11 +52,10 @@ trait LastActivedAtHelper
         // 以数据库为中心的存储，既已同步，即可删除
         Redis::del($hash);
     }
-
     //
     public function getHashFromDateString($date)
     {
-        // Redis 哈希表的命名，如：larabbs_last_actived_at_2017-10-21
+        // Redis 哈希表的命名，如：app_last_actived_at__2018-7-21
         return $this->hash_prefix . $date;
     }
 

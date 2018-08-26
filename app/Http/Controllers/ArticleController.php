@@ -30,7 +30,7 @@ class ArticleController extends Controller
                         ['replyFrom', 'childReplies' => function($query) {
                                 return $query->with('replyFrom', 'replyTo')->ancient();
                             }])->parentNode()->ancient()->paginate(config('application.replies_per_page'));
-        $article->increment('view_count', 1);
+        $article->addViewCount();
         $category =$article->category;
         $tags = $article->tags;
         return view('articles.show', compact('article', 'replies','category','tags'));

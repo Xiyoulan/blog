@@ -27,8 +27,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        // 每日零时执行一次
-        $schedule->command('xiyoulan:sync-user-actived-at')->dailyAt('00:00');
+        // 每日午夜执行一次
+        $schedule->command('xiyoulan:sync-user-actived-at')->dailyAt('01:00');
+        //错开时间
+        $schedule->command('xiyoulan:sync-article-view-count')->dailyAt('01:05');
     }
 
     /**

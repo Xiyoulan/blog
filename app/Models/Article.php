@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\ArticleViewCountHepler;
 use App\Models\Tag;
 class Article extends Model
 {
-
-    use SoftDeletes;
+    use SoftDeletes,ArticleViewCountHepler;
 
     public $timestamps = false;
     protected $casts = [
