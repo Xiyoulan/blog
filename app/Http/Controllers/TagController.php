@@ -23,6 +23,9 @@ class TagController extends Controller
     public function show($name)
     {
         $tag = Tag::where('name', $name)->first();
+        if(!isset($tag)){
+            abort(404);
+        }
         $articles = $tag->articles()->with('category', 'author', 'tags')->paginate(20);
         return view('articles.tag', compact('articles', 'tag'));
     }
