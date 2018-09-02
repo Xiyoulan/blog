@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\ArticleViewCountHepler;
+use Laravel\Scout\Searchable;
 use App\Models\Tag;
 class Article extends Model
 {
-    use SoftDeletes,ArticleViewCountHepler;
+    use SoftDeletes,ArticleViewCountHepler,Searchable;
 
     public $timestamps = false;
     protected $casts = [

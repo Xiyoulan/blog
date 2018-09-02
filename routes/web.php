@@ -41,3 +41,4 @@ Route::get('user/notifications','NotificationController@index')->name('user.noti
 Route::get('/atwho','UserController@atwho')->name('atwho');
 Route::get('/tags','TagController@searchTags')->name('tags.searchTags');
 Route::get('/tags/{name}','TagController@show')->name('tags.show');
+Route::get('search','SearchController@show')->name('search');

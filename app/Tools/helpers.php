@@ -24,3 +24,9 @@ function datetime_for_humans(\Carbon\Carbon $canbon)
         return $canbon->diffForHumans();
     }
 }
+function makeHighList($str,$content,$color='#f4645f'){
+    $replaceString="<span style='color:{$color}'>{$str}</span>";
+    $replay_content=str_replace($str,$replaceString,$content);
+    return $replay_content;
+
+}

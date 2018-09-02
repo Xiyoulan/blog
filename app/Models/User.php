@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
 
-    use LastActivedAtHelper;
+    use LastActivedAtHelper,Searchable;
     use Notifiable {
         notify as protected laravelNotify;
     }

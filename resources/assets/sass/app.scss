@@ -580,7 +580,7 @@ Blog main page paging
 }
 
 /* articles index page*/
-.-page, .tags-show-page, .articles-index-page, .categories-show-page, .users-favorites-page {
+.-page, .search-page,.tags-show-page, .articles-index-page, .categories-show-page, .users-favorites-page {
   .app-main {
     padding-top: 0px;
     hr {
@@ -627,9 +627,20 @@ Blog main page paging
     }
   }
 }
-
+.search-page{
+  .media-heading{
+    a{
+      color: #999;
+    }
+  }
+  .article-tags{
+    a{
+      color: #999;
+    }
+  }
+}
 @media(max-width: 444px) {
-  .-page, .tags-show-page, .articles-index-page, .categories-show-page {
+  .-page, .search-page,.tags-show-page, .articles-index-page, .categories-show-page {
     .app-main {
       .media-left {
         img {

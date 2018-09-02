@@ -31,7 +31,12 @@
                     <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a
                                 href="{{ route('categories.show', 4) }}">闲情</a></li>
                 </ul>
-
+                <form class="navbar-form navbar-left" action="{{route('search')}}">
+                    <div class="form-group" >
+                        <input type="text" name="query" class="form-control" value="{{Request::input('query')}}" placeholder="Search" required>
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

@@ -12477,6 +12477,7 @@ Blog main page paging
 /* articles index page*/
 
 .-page .app-main,
+.search-page .app-main,
 .tags-show-page .app-main,
 .articles-index-page .app-main,
 .categories-show-page .app-main,
@@ -12485,6 +12486,7 @@ Blog main page paging
 }
 
 .-page .app-main hr,
+.search-page .app-main hr,
 .tags-show-page .app-main hr,
 .articles-index-page .app-main hr,
 .categories-show-page .app-main hr,
@@ -12493,6 +12495,7 @@ Blog main page paging
 }
 
 .-page .app-main .panel-heading,
+.search-page .app-main .panel-heading,
 .tags-show-page .app-main .panel-heading,
 .articles-index-page .app-main .panel-heading,
 .categories-show-page .app-main .panel-heading,
@@ -12502,6 +12505,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-left img,
+.search-page .app-main .media-left img,
 .tags-show-page .app-main .media-left img,
 .articles-index-page .app-main .media-left img,
 .categories-show-page .app-main .media-left img,
@@ -12510,6 +12514,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-heading,
+.search-page .app-main .media-heading,
 .tags-show-page .app-main .media-heading,
 .articles-index-page .app-main .media-heading,
 .categories-show-page .app-main .media-heading,
@@ -12519,6 +12524,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-heading .meta,
+.search-page .app-main .media-heading .meta,
 .tags-show-page .app-main .media-heading .meta,
 .articles-index-page .app-main .media-heading .meta,
 .categories-show-page .app-main .media-heading .meta,
@@ -12527,6 +12533,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-heading .meta a,
+.search-page .app-main .media-heading .meta a,
 .tags-show-page .app-main .media-heading .meta a,
 .articles-index-page .app-main .media-heading .meta a,
 .categories-show-page .app-main .media-heading .meta a,
@@ -12536,6 +12543,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-body,
+.search-page .app-main .media-body,
 .tags-show-page .app-main .media-body,
 .articles-index-page .app-main .media-body,
 .categories-show-page .app-main .media-body,
@@ -12545,6 +12553,7 @@ Blog main page paging
 }
 
 .-page .app-main .media-body .media-heading,
+.search-page .app-main .media-body .media-heading,
 .tags-show-page .app-main .media-body .media-heading,
 .articles-index-page .app-main .media-body .media-heading,
 .categories-show-page .app-main .media-body .media-heading,
@@ -12553,6 +12562,7 @@ Blog main page paging
 }
 
 .-page .app-main .last-reply-user,
+.search-page .app-main .last-reply-user,
 .tags-show-page .app-main .last-reply-user,
 .articles-index-page .app-main .last-reply-user,
 .categories-show-page .app-main .last-reply-user,
@@ -12561,6 +12571,7 @@ Blog main page paging
 }
 
 .-page .app-main .last-reply-user a,
+.search-page .app-main .last-reply-user a,
 .tags-show-page .app-main .last-reply-user a,
 .articles-index-page .app-main .last-reply-user a,
 .categories-show-page .app-main .last-reply-user a,
@@ -12569,6 +12580,7 @@ Blog main page paging
 }
 
 .-page .app-main .article-tags,
+.search-page .app-main .article-tags,
 .tags-show-page .app-main .article-tags,
 .articles-index-page .app-main .article-tags,
 .categories-show-page .app-main .article-tags,
@@ -12577,8 +12589,17 @@ Blog main page paging
   margin-left: 70px;
 }
 
+.search-page .media-heading a {
+  color: #999;
+}
+
+.search-page .article-tags a {
+  color: #999;
+}
+
 @media (max-width: 444px) {
   .-page .app-main .media-left img,
+  .search-page .app-main .media-left img,
   .tags-show-page .app-main .media-left img,
   .articles-index-page .app-main .media-left img,
   .categories-show-page .app-main .media-left img {
@@ -12586,6 +12607,7 @@ Blog main page paging
   }
 
   .-page .app-main .media-heading,
+  .search-page .app-main .media-heading,
   .tags-show-page .app-main .media-heading,
   .articles-index-page .app-main .media-heading,
   .categories-show-page .app-main .media-heading {
@@ -12593,6 +12615,7 @@ Blog main page paging
   }
 
   .-page .app-main .media-heading .meta,
+  .search-page .app-main .media-heading .meta,
   .tags-show-page .app-main .media-heading .meta,
   .articles-index-page .app-main .media-heading .meta,
   .categories-show-page .app-main .media-heading .meta {
@@ -12600,6 +12623,7 @@ Blog main page paging
   }
 
   .-page .app-main .media-heading .meta a,
+  .search-page .app-main .media-heading .meta a,
   .tags-show-page .app-main .media-heading .meta a,
   .articles-index-page .app-main .media-heading .meta a,
   .categories-show-page .app-main .media-heading .meta a {
@@ -12607,6 +12631,7 @@ Blog main page paging
   }
 
   .-page .app-main .media-body,
+  .search-page .app-main .media-body,
   .tags-show-page .app-main .media-body,
   .articles-index-page .app-main .media-body,
   .categories-show-page .app-main .media-body {
@@ -12615,6 +12640,7 @@ Blog main page paging
   }
 
   .-page .app-main .media-body .media-heading,
+  .search-page .app-main .media-body .media-heading,
   .tags-show-page .app-main .media-body .media-heading,
   .articles-index-page .app-main .media-body .media-heading,
   .categories-show-page .app-main .media-body .media-heading {
@@ -12622,6 +12648,7 @@ Blog main page paging
   }
 
   .-page .app-main .last-reply-user,
+  .search-page .app-main .last-reply-user,
   .tags-show-page .app-main .last-reply-user,
   .articles-index-page .app-main .last-reply-user,
   .categories-show-page .app-main .last-reply-user {

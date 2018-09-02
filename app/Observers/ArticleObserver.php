@@ -23,6 +23,7 @@ class ArticleObserver
     public function saving(Article $article)
     {
         $article->content_html = clean($article->content_html, 'user_article_body');
+        $article->title = clean($article->title, 'user_article_body');
     }
 
     public function created(Article $article)

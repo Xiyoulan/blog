@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title','收藏')
+@section('title','Search:'.Request::input('query'))
 
 @section('content')
     <div class="widewrapper main">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 app-main">
+                <div class="col-md-12 app-main">
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">
-                            <h3>收藏的话题 </h3>
+                            <h4><span class="glyphicon glyphicon-search"></span>关键词:<em style="color: #f4645f;">"{{ Request::input('query') }}"</em>,&nbsp;相关搜索共<em>{{$articles instanceof Illuminate\Pagination\LengthAwarePaginator ?$articles->total():0}}</em>条</h4>
                         </div>
                         <div class="panel-body">
                             @if(count($articles))
@@ -18,10 +18,7 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <a href="{{ route('users.show',$article->author->id) }}">
-                                                <img class="media-object img-thumbnail img-responsive"
-                                                     src="{{ $article->author->avatar }}"
-                                                     alt="{{ $article->author->name }}"
-                                                     title="{{ $article->author->name }}">
+                                                <img class="media-object img-thumbnail img-responsive" src="{{ $article->author->avatar }}" alt="{{ $article->author->name }}" title="{{ $article->author->name }}">
                                             </a>
                                         </div>
                                         <div class="media-body">
@@ -32,24 +29,21 @@
                                                 @if($article->is_recommended)
                                                     <span class="label label-danger">精</span>
                                                 @endif
-                                                <a href="{{ route('articles.show',$article->id) }}">
-                                                    {{ $article->title }}</a>
+                                                <a href="{{ route('articles.show',$article->id) }}" target="_blank">
+                                                    {!! makeHighList(Request::input('query'),make_excerpt($article->title,200)) !!}</a>
                                                 <span class="meta pull-right">
-                                        <a href="{{ route('categories.show', $article->category->id) }}"
-                                           class="hidden-xs" title="{{ $article->category->name }}">
+                                        <a href="{{ route('categories.show', $article->category->id) }}" class="hidden-xs" title="{{ $article->category->name }}">
                                             <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                                             {{ $article->category->name }}
                                         </a>
                                         <span class="hidden-xs"> • </span>
-                                        <a href="{{ route('users.show', [$article->user_id]) }}"
-                                           title="{{ $article->author->name }}">
+                                        <a href="{{ route('users.show', [$article->user_id]) }}" title="{{ $article->author->name }}">
                                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                            {{ make_excerpt($article->author->name,15) }}
+                                            {{ make_excerpt($article->author->name,25) }}
                                         </a>
                                         <span> • </span>
                                         <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                        <span class="timeago"
-                                              title="最后活跃于">{{ datetime_for_humans($article->updated_at) }}</span>
+                                        <span class="timeago" title="最后活跃于">{{ datetime_for_humans($article->updated_at) }}</span>
                                         <span> • </span>
                                         <span class="glyphicon glyphicon-comment"></span>
                                         <span>{{ $article->reply_count }}</span>
@@ -58,18 +52,16 @@
                                         <span>{{ $article->favoriter_count }}</span>
                                     </span>
                                             </div>
-                                            {{ make_excerpt($article->content_html,100) }}
+                                            {!! makeHighList(Request::input('query'),make_excerpt($article->content_html,200)) !!}
                                         </div>
                                         @if($article->lastReplyUser)
                                             <span class="pull-right last-reply-user">
                                 最后活跃:
-                                <a href="{{ route('users.show', [$article->lastReplyUser->id]) }}"
-                                   title="{{ $article->lastReplyUser->name }}">{{ $article->lastReplyUser->name }}</a>
+                                <a href="{{ route('users.show', [$article->lastReplyUser->id]) }}" title="{{ $article->lastReplyUser->name }}">{{ $article->lastReplyUser->name }}</a>
                             </span>
                                         @endif
                                         @if(count($article->tags)>0)
-                                            <span class="pull-left article-tags hidden-xs"><span
-                                                        class="glyphicon glyphicon-tags"></span>&nbsp;标签:&nbsp;
+                                            <span class="pull-left article-tags hidden-xs"><span class="glyphicon glyphicon-tags"></span>&nbsp;标签:&nbsp;
                                                 @foreach($article->tags as $item)
                                                     <a href="{{ route('tags.show',$item->name) }}">{{$item->name}}</a>
                                                     @if(!$loop->last)
@@ -88,7 +80,6 @@
                         </div>
                     </div>
                 </div>
-                @include('users._aside')
             </div>
         </div>
     </div>

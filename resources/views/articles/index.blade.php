@@ -57,6 +57,9 @@
                                         <span> • </span>
                                         <span class="glyphicon glyphicon-comment"></span>
                                         <span>{{ $article->reply_count }}</span>
+                                        <span> • </span>
+                                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                                        <span>{{ $article->favoriter_count }}</span>
                                     </span>
                                 </div>
                                 {{ make_excerpt($article->content_html,100) }}
